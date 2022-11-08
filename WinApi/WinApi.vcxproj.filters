@@ -8,6 +8,9 @@
     <Filter Include="WinApi">
       <UniqueIdentifier>{c526c0c2-f26d-43cd-a0b6-3bf1825a7e83}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{e1e1b887-bb9d-4090-972d-56e95bce2c8c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WinApi.h">
@@ -25,6 +28,9 @@
     <ClInclude Include="targetver.h">
       <Filter>WinApi</Filter>
     </ClInclude>
+    <ClInclude Include="CGame.h">
+      <Filter>Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinApi.cpp">
@@ -32,6 +38,9 @@
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>WinApi</Filter>
+    </ClCompile>
+    <ClCompile Include="CGame.cpp">
+      <Filter>Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

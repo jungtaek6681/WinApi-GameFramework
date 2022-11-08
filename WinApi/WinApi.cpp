@@ -5,6 +5,8 @@
 #include "framework.h"
 #include "WinApi.h"
 
+#include "CGame.h"
+
 #define MAX_LOADSTRING 100
 
 // 전역 변수:
@@ -74,6 +76,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	}
 	*/
 
+	CGame game;
+	game.Init();
+
 	MSG msg;
 	while (TRUE)
 	{
@@ -91,8 +96,12 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		else
 		{
 			// 윈도우 메세지가 없는 대부분의 시간동안 게임 처리를 진행
+			game.Run();
 		}
 	}
+
+	game.Release();
+
 
 	return (int)msg.wParam;
 }
