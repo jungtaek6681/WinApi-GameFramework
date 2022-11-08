@@ -4,6 +4,9 @@
     <Filter Include="Engine">
       <UniqueIdentifier>{cd64a37d-d51c-4148-826c-6b4ba931ca74}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{59139c88-208b-4bb6-9854-3e0cef0457f2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -15,9 +18,18 @@
     <ClInclude Include="EnginePch.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="SingleTon.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="CEngine.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="CEngine.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>
