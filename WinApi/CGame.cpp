@@ -10,6 +10,11 @@ CGame::CGame()
 {
 	hInst	= 0;
 	hWnd	= 0;
+	hDC		= 0;
+
+	moveDir	= Vec2(0.f, 0.f);
+	pos		= Vec2(WINSIZE.x * 0.5f, WINSIZE.y * 0.5f);
+	scale	= Vec2(100.f, 100.f);
 }
 
 CGame::~CGame()
@@ -54,6 +59,9 @@ void CGame::Init(HINSTANCE hInstance)
 	ShowWindow(hWnd, SW_SHOW);
 	UpdateWindow(hWnd);
 
+	// 윈도우에 사용할 DC 할당
+	hDC = GetDC(hWnd);
+
 	// 게임엔진 초기화
 	SINGLE(CEngine)->Init(hInst, hWnd, WINSIZE);
 }
@@ -71,6 +79,9 @@ void CGame::Release()
 {
 	// 게임의 마무리 진행
 
+	// 할당받은 DC를 반납
+	ReleaseDC(hWnd, hDC);
+
 	// 게임엔진 마무리
 	SINGLE(CEngine)->Release();
 }
@@ -78,14 +89,50 @@ void CGame::Release()
 void CGame::Input()
 {
 	// 게임의 입력 진행
+
+	// GetAsyncKeyState : 키보드의 키 입력상태 확인
+	if (GetAsyncKeyState(VK_LEFT) & 0x8000)
+	{
+		moveDir.x = -1;
+	}
+	else if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
+	{
+		moveDir.x = +1;
+	}
+	else
+	{
+		moveDir.x = 0;
+	}
+
+	if (GetAsyncKeyState(VK_UP) & 0x8000)
+	{
+		moveDir.y = -1;
+	}
+	else if (GetAsyncKeyState(VK_DOWN) & 0x8000)
+	{
+		moveDir.y = +1;
+	}
+	else
+	{
+		moveDir.y = 0;
+	}
 }
 
 void CGame::Update()
 {
 	// 게임의 처리 진행
+
+	pos += moveDir;
 }
 
 void CGame::Render()
 {
 	// 게임의 표현 진행
+	Rectangle(
+		hDC,
+		(int)(pos.x - scale.x * 0.5f),
+		(int)(pos.y - scale.y * 0.5f),
+		(int)(pos.x + scale.x * 0.5f),
+		(int)(pos.y + scale.y * 0.5f)
+	);
 }
