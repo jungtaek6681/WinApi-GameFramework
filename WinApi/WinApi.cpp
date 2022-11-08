@@ -38,6 +38,12 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
+	// 한국 지역 설정
+	setlocale(LC_ALL, "Korean");
+	// 메모리 누수 체크
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	//_CrtSetBreakAlloc(219);
+
 	// 리소스 뷰의 String table 정보
 	// 전역 문자열을 초기화합니다.
 	LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
@@ -93,7 +99,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 	wcex.hIconSm = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_SMALL));	// 프로그램 작은사이즈 아이콘
 	wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);					// 커서 지정
 	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);				// 윈도우 작업영역에 칠한 배경 브러시
-	wcex.lpszMenuName = MAKEINTRESOURCEW(IDC_WINAPI);				// 윈도우에서 사용할 메뉴 지정. nullptr로 없앰
+	wcex.lpszMenuName = nullptr;									// 윈도우에서 사용할 메뉴 지정. nullptr로 없앰
 	wcex.lpszClassName = szWindowClass;								// 윈도우 클래스의 이름
 
 	return RegisterClassExW(&wcex);
