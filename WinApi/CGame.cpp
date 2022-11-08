@@ -64,6 +64,7 @@ void CGame::Init(HINSTANCE hInstance)
 
 	// 게임엔진 초기화
 	SINGLE(CEngine)->Init(hInst, hWnd, WINSIZE);
+	SINGLE(CTimeManager)->Init();
 }
 
 void CGame::Run()
@@ -84,6 +85,7 @@ void CGame::Release()
 
 	// 게임엔진 마무리
 	SINGLE(CEngine)->Release();
+	SINGLE(CTimeManager)->Release();
 }
 
 void CGame::Input()
@@ -122,7 +124,9 @@ void CGame::Update()
 {
 	// 게임의 처리 진행
 
-	pos += moveDir;
+	SINGLE(CTimeManager)->Update();
+
+	pos += moveDir * 100 * DT;
 }
 
 void CGame::Render()

@@ -7,6 +7,9 @@
     <Filter Include="Util">
       <UniqueIdentifier>{59139c88-208b-4bb6-9854-3e0cef0457f2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Manager">
+      <UniqueIdentifier>{dbc8a783-d256-4311-8ad6-57b6cf381d95}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -27,6 +30,9 @@
     <ClInclude Include="Struct.h">
       <Filter>Util</Filter>
     </ClInclude>
+    <ClInclude Include="CTimeManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -34,6 +40,9 @@
     </ClCompile>
     <ClCompile Include="CEngine.cpp">
       <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="CTimeManager.cpp">
+      <Filter>Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
