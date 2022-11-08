@@ -130,16 +130,22 @@ void CGame::Render()
 
 	// 게임의 표현 진행
 
+	RENDER->SetPen(PenType::Solid, RGB(255, 0, 0), 1);
+	RENDER->SetBrush(BrushType::Solid, RGB(0, 255, 0));
 	RENDER->Rect(
 		pos.x - scale.x * 0.5f,
 		pos.y - scale.y * 0.5f,
 		pos.x + scale.x * 0.5f,
 		pos.y + scale.y * 0.5f
 	);
+	RENDER->SetPen();
+	RENDER->SetBrush();
 
 	// 게임의 우상단에 게임 FPS 출력 (60프레임 이상을 목표로 최적화 해야함)
 	wstring frame = to_wstring(FPS);
-	RENDER->Text(WINSIZE.x - 50, 10, frame);
+	RENDER->SetText(20, RGB(0, 255, 0), TextAlign::Right);
+	RENDER->Text(WINSIZE.x - 30, 10, frame);
+	RENDER->SetText();
 
 	SINGLE(CRenderManager)->EndDraw();
 }
