@@ -62,6 +62,7 @@ void CGame::Init(HINSTANCE hInstance)
 	SINGLE(CEngine)->Init(hInst, hWnd, WINSIZE);
 	SINGLE(CTimeManager)->Init();
 	SINGLE(CRenderManager)->Init();
+	SINGLE(CInputManager)->Init();
 }
 
 void CGame::Run()
@@ -81,18 +82,19 @@ void CGame::Release()
 	SINGLE(CEngine)->Release();
 	SINGLE(CTimeManager)->Release();
 	SINGLE(CRenderManager)->Release();
+	SINGLE(CInputManager)->Release();
 }
 
 void CGame::Input()
 {
 	// 게임의 입력 진행
+	SINGLE(CInputManager)->Update();
 
-	// GetAsyncKeyState : 키보드의 키 입력상태 확인
-	if (GetAsyncKeyState(VK_LEFT) & 0x8000)
+	if (BUTTONSTAY(VK_LEFT))
 	{
 		moveDir.x = -1;
 	}
-	else if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
+	else if (BUTTONSTAY(VK_RIGHT))
 	{
 		moveDir.x = +1;
 	}
@@ -101,11 +103,11 @@ void CGame::Input()
 		moveDir.x = 0;
 	}
 
-	if (GetAsyncKeyState(VK_UP) & 0x8000)
+	if (BUTTONSTAY(VK_UP))
 	{
 		moveDir.y = -1;
 	}
-	else if (GetAsyncKeyState(VK_DOWN) & 0x8000)
+	else if (BUTTONSTAY(VK_DOWN))
 	{
 		moveDir.y = +1;
 	}

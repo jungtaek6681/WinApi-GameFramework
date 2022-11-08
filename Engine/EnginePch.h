@@ -7,6 +7,7 @@
 #include <cassert>
 #include <chrono>
 #include <string>
+#include <array>
 
 using namespace std;
 

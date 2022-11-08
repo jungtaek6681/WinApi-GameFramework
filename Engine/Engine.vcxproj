@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CEngine.h" />
+    <ClInclude Include="CInputManager.h" />
     <ClInclude Include="CRenderManager.h" />
     <ClInclude Include="CTimeManager.h" />
     <ClInclude Include="Engine.h" />
@@ -158,6 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp" />
+    <ClCompile Include="CInputManager.cpp" />
     <ClCompile Include="CRenderManager.cpp" />
     <ClCompile Include="CTimeManager.cpp" />
     <ClCompile Include="pch.cpp">
