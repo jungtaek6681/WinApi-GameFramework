@@ -23,7 +23,6 @@ private:
 private:
 	HINSTANCE		hInst;
 	HWND			hWnd;
-	HDC				hDC;
 
 	Vec2			moveDir;
 	Vec2			pos;

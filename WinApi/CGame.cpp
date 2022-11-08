@@ -10,7 +10,6 @@ CGame::CGame()
 {
 	hInst	= 0;
 	hWnd	= 0;
-	hDC		= 0;
 
 	moveDir	= Vec2(0.f, 0.f);
 	pos		= Vec2(WINSIZE.x * 0.5f, WINSIZE.y * 0.5f);
@@ -59,12 +58,10 @@ void CGame::Init(HINSTANCE hInstance)
 	ShowWindow(hWnd, SW_SHOW);
 	UpdateWindow(hWnd);
 
-	// 윈도우에 사용할 DC 할당
-	hDC = GetDC(hWnd);
-
 	// 게임엔진 초기화
 	SINGLE(CEngine)->Init(hInst, hWnd, WINSIZE);
 	SINGLE(CTimeManager)->Init();
+	SINGLE(CRenderManager)->Init();
 }
 
 void CGame::Run()
@@ -80,12 +77,10 @@ void CGame::Release()
 {
 	// 게임의 마무리 진행
 
-	// 할당받은 DC를 반납
-	ReleaseDC(hWnd, hDC);
-
 	// 게임엔진 마무리
 	SINGLE(CEngine)->Release();
 	SINGLE(CTimeManager)->Release();
+	SINGLE(CRenderManager)->Release();
 }
 
 void CGame::Input()
@@ -131,12 +126,20 @@ void CGame::Update()
 
 void CGame::Render()
 {
+	SINGLE(CRenderManager)->BeginDraw();
+
 	// 게임의 표현 진행
-	Rectangle(
-		hDC,
-		(int)(pos.x - scale.x * 0.5f),
-		(int)(pos.y - scale.y * 0.5f),
-		(int)(pos.x + scale.x * 0.5f),
-		(int)(pos.y + scale.y * 0.5f)
+
+	RENDER->Rect(
+		pos.x - scale.x * 0.5f,
+		pos.y - scale.y * 0.5f,
+		pos.x + scale.x * 0.5f,
+		pos.y + scale.y * 0.5f
 	);
+
+	// 게임의 우상단에 게임 FPS 출력 (60프레임 이상을 목표로 최적화 해야함)
+	wstring frame = to_wstring(FPS);
+	RENDER->Text(WINSIZE.x - 50, 10, frame);
+
+	SINGLE(CRenderManager)->EndDraw();
 }

@@ -33,6 +33,9 @@
     <ClInclude Include="CTimeManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
+    <ClInclude Include="CRenderManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -42,6 +45,9 @@
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="CTimeManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CRenderManager.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
   </ItemGroup>

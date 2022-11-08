@@ -6,6 +6,7 @@
 // C++ 표준 라이브러리
 #include <cassert>
 #include <chrono>
+#include <string>
 
 using namespace std;
 
