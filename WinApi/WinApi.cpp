@@ -59,17 +59,38 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	// 리소스 뷰의 단축키 정보
 	HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_WINAPI));
 
-	MSG msg;
-
-	// 기본 메시지 루프입니다:
+	// 기본 메시지 루프입니다: GetMessage
 	// 메세지 큐에서 메세지가 확인될 때까지 대기
 	// 메세지 큐에 msg.mssage == WM_QUIT 인 경우 false를 반환
+	/*
+	MSG msg;
 	while (GetMessage(&msg, nullptr, 0, 0))
 	{
 		if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))	// 단축키 처리
 		{
 			TranslateMessage(&msg);	// 키보드 입력메세지 처리를 담당
 			DispatchMessage(&msg);	// WndProc에서 전달된 메세지를 실제 윈도우에 전달
+		}
+	}
+	*/
+
+	MSG msg;
+	while (TRUE)
+	{
+		if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))    // 메세지 없으면 게임처리, 메세지 있으면 메세지처리
+		{
+			if (WM_QUIT == msg.message)
+				break;
+
+			if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg)) // 단축키에 대한 처리
+			{
+				TranslateMessage(&msg);     // 키보드 입력메세지 처리를 담당
+				DispatchMessage(&msg);      // WndProc에서 전달된 메세지를 실제 윈도우에 전달
+			}
+		}
+		else
+		{
+			// 윈도우 메세지가 없는 대부분의 시간동안 게임 처리를 진행
 		}
 	}
 
