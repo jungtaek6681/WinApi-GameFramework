@@ -11,6 +11,7 @@
 
 // C++ 표준 라이브러리
 #include <clocale>
+#include <cassert>
 
 // Util
 #include <crtdbg.h>

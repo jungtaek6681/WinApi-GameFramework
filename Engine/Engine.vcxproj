@@ -152,6 +152,7 @@
     <ClInclude Include="EnginePch.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="SingleTon.h" />
+    <ClInclude Include="Struct.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp" />

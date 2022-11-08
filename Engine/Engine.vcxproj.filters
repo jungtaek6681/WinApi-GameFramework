@@ -24,6 +24,9 @@
     <ClInclude Include="CEngine.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Struct.h">
+      <Filter>Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">

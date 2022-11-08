@@ -16,7 +16,6 @@ WCHAR		szWindowClass[MAX_LOADSTRING];	// 기본 창 클래스 이름입니다.
 
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
-BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
@@ -52,12 +51,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	LoadStringW(hInstance, IDC_WINAPI, szWindowClass, MAX_LOADSTRING);
 	MyRegisterClass(hInstance);
 
-	// 애플리케이션 초기화를 수행합니다:
-	if (!InitInstance(hInstance, nCmdShow))
-	{
-		return FALSE;
-	}
-
 	// 리소스 뷰의 단축키 정보
 	HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_WINAPI));
 
@@ -77,7 +70,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	*/
 
 	CGame game;
-	game.Init();
+	game.Init(hInstance);
 
 	MSG msg;
 	while (TRUE)
@@ -133,45 +126,6 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 	wcex.lpszClassName = szWindowClass;								// 윈도우 클래스의 이름
 
 	return RegisterClassExW(&wcex);
-}
-
-//
-//   함수: InitInstance(HINSTANCE, int)
-//
-//   용도: 인스턴스 핸들을 저장하고 주 창을 만듭니다.
-//
-//   주석:
-//
-//        이 함수를 통해 인스턴스 핸들을 전역 변수에 저장하고
-//        주 프로그램 창을 만든 다음 표시합니다.
-//
-BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
-{
-	hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
-
-	HWND hWnd = CreateWindow(	// 윈도우 생성 및 핸들값 반환
-		szWindowClass,			// 윈도우 클래스 이름
-		szTitle,				// 윈도우 타이틀 이름
-		WS_OVERLAPPEDWINDOW,	// 윈도우 스타일
-		CW_USEDEFAULT,			// 윈도우 화면 X
-		0,						// 윈도우 화면 Y
-		CW_USEDEFAULT,			// 윈도우 가로 크기
-		0,						// 윈도우 세로 크기
-		nullptr,				// 부모 윈도우
-		nullptr,				// 메뉴 핸들
-		hInstance,				// 인스턴스 지정
-		nullptr					// 추가 매개변수
-	);
-
-	if (!hWnd)
-	{
-		return FALSE;
-	}
-
-	ShowWindow(hWnd, nCmdShow);
-	UpdateWindow(hWnd);
-
-	return TRUE;
 }
 
 //
