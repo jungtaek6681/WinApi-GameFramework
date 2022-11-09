@@ -150,6 +150,7 @@
     <ClInclude Include="CEngine.h" />
     <ClInclude Include="CInputManager.h" />
     <ClInclude Include="CRenderManager.h" />
+    <ClInclude Include="CScene.h" />
     <ClInclude Include="CTimeManager.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="EnginePch.h" />
@@ -161,6 +162,7 @@
     <ClCompile Include="CEngine.cpp" />
     <ClCompile Include="CInputManager.cpp" />
     <ClCompile Include="CRenderManager.cpp" />
+    <ClCompile Include="CScene.cpp" />
     <ClCompile Include="CTimeManager.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

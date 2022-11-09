@@ -11,6 +11,9 @@
     <Filter Include="Game">
       <UniqueIdentifier>{e1e1b887-bb9d-4090-972d-56e95bce2c8c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{96e82600-7a95-4729-8398-14d7def8d0c1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WinApi.h">
@@ -31,6 +34,12 @@
     <ClInclude Include="CGame.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="CSceneStage01.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CSceneTitle.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinApi.cpp">
@@ -41,6 +50,12 @@
     </ClCompile>
     <ClCompile Include="CGame.cpp">
       <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneStage01.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneTitle.cpp">
+      <Filter>Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

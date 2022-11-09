@@ -3,6 +3,9 @@
 
 #include "Resource.h"
 
+#include "CSceneTitle.h"
+#include "CSceneStage01.h"
+
 const Vec2 CGame::WINSTART	= Vec2(100, 100);
 const Vec2 CGame::WINSIZE	= Vec2(1280, 720);
 
@@ -11,9 +14,9 @@ CGame::CGame()
 	hInst	= 0;
 	hWnd	= 0;
 
-	moveDir	= Vec2(0.f, 0.f);
-	pos		= Vec2(WINSIZE.x * 0.5f, WINSIZE.y * 0.5f);
-	scale	= Vec2(100.f, 100.f);
+	curScene		= nullptr;
+	titleScene		= nullptr;
+	stage01Scene	= nullptr;
 }
 
 CGame::~CGame()
@@ -63,6 +66,13 @@ void CGame::Init(HINSTANCE hInstance)
 	SINGLE(CTimeManager)->Init();
 	SINGLE(CRenderManager)->Init();
 	SINGLE(CInputManager)->Init();
+
+	// 씬 설정
+	titleScene = new CSceneTitle();
+	stage01Scene = new CSceneStage01();
+
+	curScene = titleScene;
+	curScene->Enter();
 }
 
 void CGame::Run()
@@ -90,30 +100,17 @@ void CGame::Input()
 	// 게임의 입력 진행
 	SINGLE(CInputManager)->Update();
 
-	if (BUTTONSTAY(VK_LEFT))
+	if (BUTTONDOWN(VK_SPACE))
 	{
-		moveDir.x = -1;
+		curScene->Exit();
+		curScene = stage01Scene;
+		curScene->Enter();
 	}
-	else if (BUTTONSTAY(VK_RIGHT))
+	else if (BUTTONDOWN(VK_ESCAPE))
 	{
-		moveDir.x = +1;
-	}
-	else
-	{
-		moveDir.x = 0;
-	}
-
-	if (BUTTONSTAY(VK_UP))
-	{
-		moveDir.y = -1;
-	}
-	else if (BUTTONSTAY(VK_DOWN))
-	{
-		moveDir.y = +1;
-	}
-	else
-	{
-		moveDir.y = 0;
+		curScene->Exit();
+		curScene = titleScene;
+		curScene->Enter();
 	}
 }
 
@@ -123,7 +120,7 @@ void CGame::Update()
 
 	SINGLE(CTimeManager)->Update();
 
-	pos += moveDir * 100 * DT;
+	curScene->Update();
 }
 
 void CGame::Render()
@@ -132,16 +129,7 @@ void CGame::Render()
 
 	// 게임의 표현 진행
 
-	RENDER->SetPen(PenType::Solid, RGB(255, 0, 0), 1);
-	RENDER->SetBrush(BrushType::Solid, RGB(0, 255, 0));
-	RENDER->Rect(
-		pos.x - scale.x * 0.5f,
-		pos.y - scale.y * 0.5f,
-		pos.x + scale.x * 0.5f,
-		pos.y + scale.y * 0.5f
-	);
-	RENDER->SetPen();
-	RENDER->SetBrush();
+	curScene->Render();
 
 	// 게임의 우상단에 게임 FPS 출력 (60프레임 이상을 목표로 최적화 해야함)
 	wstring frame = to_wstring(FPS);

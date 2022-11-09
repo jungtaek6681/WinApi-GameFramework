@@ -10,6 +10,9 @@
     <Filter Include="Manager">
       <UniqueIdentifier>{dbc8a783-d256-4311-8ad6-57b6cf381d95}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Asset">
+      <UniqueIdentifier>{7919b778-da00-457d-9e54-53d41a65d747}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -39,6 +42,9 @@
     <ClInclude Include="CInputManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
+    <ClInclude Include="CScene.h">
+      <Filter>Asset</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -55,6 +61,9 @@
     </ClCompile>
     <ClCompile Include="CInputManager.cpp">
       <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene.cpp">
+      <Filter>Asset</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

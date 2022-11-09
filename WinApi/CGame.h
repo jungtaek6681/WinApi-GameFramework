@@ -24,7 +24,7 @@ private:
 	HINSTANCE		hInst;
 	HWND			hWnd;
 
-	Vec2			moveDir;
-	Vec2			pos;
-	Vec2			scale;
+	CScene*			curScene;
+	CScene*			titleScene;
+	CScene*			stage01Scene;
 };
