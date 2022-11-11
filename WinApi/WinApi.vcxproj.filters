@@ -40,6 +40,9 @@
     <ClInclude Include="CSceneTitle.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Enum.h">
+      <Filter>Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinApi.cpp">

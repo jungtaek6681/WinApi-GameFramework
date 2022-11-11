@@ -23,8 +23,4 @@ private:
 private:
 	HINSTANCE		hInst;
 	HWND			hWnd;
-
-	CScene*			curScene;
-	CScene*			titleScene;
-	CScene*			stage01Scene;
 };

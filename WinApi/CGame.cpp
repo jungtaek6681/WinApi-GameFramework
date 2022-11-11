@@ -13,10 +13,6 @@ CGame::CGame()
 {
 	hInst	= 0;
 	hWnd	= 0;
-
-	curScene		= nullptr;
-	titleScene		= nullptr;
-	stage01Scene	= nullptr;
 }
 
 CGame::~CGame()
@@ -66,13 +62,14 @@ void CGame::Init(HINSTANCE hInstance)
 	SINGLE(CTimeManager)->Init();
 	SINGLE(CRenderManager)->Init();
 	SINGLE(CInputManager)->Init();
+	SINGLE(CSceneManager)->Init();
 
-	// 씬 설정
-	titleScene = new CSceneTitle();
-	stage01Scene = new CSceneStage01();
+	// TODO : 씬 추가
+	SINGLE(CSceneManager)->AddScene(SceneType::Title,	new CSceneTitle());
+	SINGLE(CSceneManager)->AddScene(SceneType::Stage01,	new CSceneStage01());
 
-	curScene = titleScene;
-	curScene->Enter();
+	// 씬 시작
+	SINGLE(CSceneManager)->SetStartScene(SceneType::Title);
 }
 
 void CGame::Run()
@@ -93,25 +90,13 @@ void CGame::Release()
 	SINGLE(CTimeManager)->Release();
 	SINGLE(CRenderManager)->Release();
 	SINGLE(CInputManager)->Release();
+	SINGLE(CSceneManager)->Release();
 }
 
 void CGame::Input()
 {
 	// 게임의 입력 진행
 	SINGLE(CInputManager)->Update();
-
-	if (BUTTONDOWN(VK_SPACE))
-	{
-		curScene->Exit();
-		curScene = stage01Scene;
-		curScene->Enter();
-	}
-	else if (BUTTONDOWN(VK_ESCAPE))
-	{
-		curScene->Exit();
-		curScene = titleScene;
-		curScene->Enter();
-	}
 }
 
 void CGame::Update()
@@ -119,8 +104,7 @@ void CGame::Update()
 	// 게임의 처리 진행
 
 	SINGLE(CTimeManager)->Update();
-
-	curScene->Update();
+	SINGLE(CSceneManager)->Update();
 }
 
 void CGame::Render()
@@ -128,8 +112,7 @@ void CGame::Render()
 	SINGLE(CRenderManager)->BeginDraw();
 
 	// 게임의 표현 진행
-
-	curScene->Render();
+	SINGLE(CSceneManager)->Render();
 
 	// 게임의 우상단에 게임 FPS 출력 (60프레임 이상을 목표로 최적화 해야함)
 	wstring frame = to_wstring(FPS);

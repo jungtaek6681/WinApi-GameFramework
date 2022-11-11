@@ -15,3 +15,6 @@
 
 // Util
 #include <crtdbg.h>
+
+// Enum
+#include "Enum.h"

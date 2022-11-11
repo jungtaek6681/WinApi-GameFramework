@@ -45,6 +45,9 @@
     <ClInclude Include="CScene.h">
       <Filter>Asset</Filter>
     </ClInclude>
+    <ClInclude Include="CSceneManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -64,6 +67,9 @@
     </ClCompile>
     <ClCompile Include="CScene.cpp">
       <Filter>Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneManager.cpp">
+      <Filter>Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

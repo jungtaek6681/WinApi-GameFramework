@@ -51,6 +51,11 @@ void CSceneStage01::Update()
 	}
 
 	pos += moveDir * 100 * DT;
+
+	if (BUTTONDOWN(VK_ESCAPE))
+	{
+		SINGLE(CSceneManager)->ChangeScene(SceneType::Title);
+	}
 }
 
 void CSceneStage01::Render()

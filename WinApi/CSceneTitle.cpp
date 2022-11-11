@@ -21,6 +21,10 @@ void CSceneTitle::Enter()
 
 void CSceneTitle::Update()
 {
+	if (BUTTONDOWN(VK_SPACE))
+	{
+		SINGLE(CSceneManager)->ChangeScene(SceneType::Stage01);
+	}
 }
 
 void CSceneTitle::Render()
