@@ -14,6 +14,9 @@
     <Filter Include="Scene">
       <UniqueIdentifier>{96e82600-7a95-4729-8398-14d7def8d0c1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{bed96a63-d6c8-4b94-8fa0-4ffe76287cd7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WinApi.h">
@@ -43,6 +46,9 @@
     <ClInclude Include="Enum.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="CPlayer.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinApi.cpp">
@@ -59,6 +65,9 @@
     </ClCompile>
     <ClCompile Include="CSceneTitle.cpp">
       <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer.cpp">
+      <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

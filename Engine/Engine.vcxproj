@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CEngine.h" />
+    <ClInclude Include="CGameObject.h" />
     <ClInclude Include="CInputManager.h" />
     <ClInclude Include="CRenderManager.h" />
     <ClInclude Include="CScene.h" />
@@ -161,6 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CEngine.cpp" />
+    <ClCompile Include="CGameObject.cpp" />
     <ClCompile Include="CInputManager.cpp" />
     <ClCompile Include="CRenderManager.cpp" />
     <ClCompile Include="CScene.cpp" />

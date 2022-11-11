@@ -14,8 +14,6 @@ public:
 	void Release()	override;
 
 private:
-	Vec2			moveDir;
-	Vec2			pos;
-	Vec2			scale;
+	CGameObject* player;
 };
 

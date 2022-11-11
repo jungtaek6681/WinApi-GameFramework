@@ -2,12 +2,11 @@
 #include "CSceneStage01.h"
 
 #include "CGame.h"
+#include "CPlayer.h"
 
 CSceneStage01::CSceneStage01()
 {
-	moveDir	= Vec2(0.f, 0.f);
-	pos		= Vec2(CGame::WINSIZE.x * 0.5f, CGame::WINSIZE.y * 0.5f);
-	scale	= Vec2(100.f, 100.f);
+	player = nullptr;
 }
 
 CSceneStage01::~CSceneStage01()
@@ -16,41 +15,19 @@ CSceneStage01::~CSceneStage01()
 
 void CSceneStage01::Init()
 {
+	player = new CPlayer();
+	player->SetPos(Vec2(CGame::WINSIZE.x * 0.5f, CGame::WINSIZE.y * 0.5f));
+	player->Init();
 }
 
 void CSceneStage01::Enter()
 {
+	player->OnEnable();
 }
 
 void CSceneStage01::Update()
 {
-	if (BUTTONSTAY(VK_LEFT))
-	{
-		moveDir.x = -1;
-	}
-	else if (BUTTONSTAY(VK_RIGHT))
-	{
-		moveDir.x = +1;
-	}
-	else
-	{
-		moveDir.x = 0;
-	}
-
-	if (BUTTONSTAY(VK_UP))
-	{
-		moveDir.y = -1;
-	}
-	else if (BUTTONSTAY(VK_DOWN))
-	{
-		moveDir.y = +1;
-	}
-	else
-	{
-		moveDir.y = 0;
-	}
-
-	pos += moveDir * 100 * DT;
+	player->Update();
 
 	if (BUTTONDOWN(VK_ESCAPE))
 	{
@@ -60,22 +37,15 @@ void CSceneStage01::Update()
 
 void CSceneStage01::Render()
 {
-	RENDER->SetPen(PenType::Solid, RGB(255, 0, 0), 1);
-	RENDER->SetBrush(BrushType::Solid, RGB(0, 255, 0));
-	RENDER->Rect(
-		pos.x - scale.x * 0.5f,
-		pos.y - scale.y * 0.5f,
-		pos.x + scale.x * 0.5f,
-		pos.y + scale.y * 0.5f
-	);
-	RENDER->SetPen();
-	RENDER->SetBrush();
+	player->Render();
 }
 
 void CSceneStage01::Exit()
 {
+	player->OnDisable();
 }
 
 void CSceneStage01::Release()
 {
+	player->Release();
 }

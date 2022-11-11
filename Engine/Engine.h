@@ -11,3 +11,4 @@
 
 // Asset
 #include "CScene.h"
+#include "CGameObject.h"
