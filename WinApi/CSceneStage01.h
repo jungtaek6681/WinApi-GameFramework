@@ -12,8 +12,5 @@ public:
 	void Render()	override;
 	void Exit()		override;
 	void Release()	override;
-
-private:
-	CGameObject* player;
 };
 

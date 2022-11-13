@@ -5,7 +5,7 @@ public:
 	CPlayer();
 	virtual ~CPlayer();
 
-public:
+private:
 	void	Init()			override;
 	void	OnEnable()		override;
 	void	Update()		override;
