@@ -51,6 +51,9 @@
     <ClInclude Include="CGameObject.h">
       <Filter>Asset</Filter>
     </ClInclude>
+    <ClInclude Include="Logger.h">
+      <Filter>Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
