@@ -151,6 +151,7 @@
     <ClInclude Include="CEventManager.h" />
     <ClInclude Include="CGameObject.h" />
     <ClInclude Include="CInputManager.h" />
+    <ClInclude Include="Component.h" />
     <ClInclude Include="CRenderManager.h" />
     <ClInclude Include="CScene.h" />
     <ClInclude Include="CSceneManager.h" />

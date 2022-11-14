@@ -16,5 +16,6 @@ using namespace std;
 
 // Util
 #include "SingleTon.h"
+#include "Component.h"
 #include "Struct.h"
 #include "Logger.h"
