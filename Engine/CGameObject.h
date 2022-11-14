@@ -2,7 +2,7 @@
 class CEventManager;
 class CScene;
 
-class CGameObject
+class CGameObject : public Composite<CGameObject>
 {
 	friend CEventManager;
 	friend CScene;
@@ -36,6 +36,13 @@ private:
 	virtual void	Render()	= 0;
 	virtual void	OnDisable()	= 0;
 	virtual void	Release()	= 0;
+
+	void			ComponentInit()			override;
+	void			ComponentOnEnable()		override;
+	void			ComponentUpdate()		override;
+	void			ComponentRender()		override;
+	void			ComponentOnDisable()	override;
+	void			ComponentRelease()		override;
 
 	void			SetReservedDelete()		{ reservedDelete = true; }	// 게임오브젝트 삭제 예약
 

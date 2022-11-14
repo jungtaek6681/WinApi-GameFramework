@@ -14,14 +14,14 @@ void CScene::AddGameObject(CGameObject* obj)
 {
 	objList.push_back(obj);
 	obj->SetScene(this);
-	obj->Init();
-	if (active) obj->OnEnable();
+	obj->ComponentInit();
+	if (active) obj->ComponentOnEnable();
 }
 
 void CScene::DeleteGameObject(CGameObject* obj)
 {
-	if (active) obj->OnDisable();
-	obj->Release();
+	if (active) obj->ComponentOnDisable();
+	obj->ComponentRelease();
 	obj->SetScene(nullptr);
 	objList.remove(obj);
 	delete obj;
@@ -31,8 +31,8 @@ void CScene::DeleteAllObject()
 {
 	for (CGameObject* obj : objList)
 	{
-		if (active) obj->OnDisable();
-		obj->Release();
+		if (active) obj->ComponentOnDisable();
+		obj->ComponentRelease();
 		objList.remove(obj);
 		delete obj;
 	}
@@ -49,7 +49,7 @@ void CScene::SceneEnter()
 	active = true;
 	for (CGameObject* obj : objList)
 	{
-		obj->OnEnable();
+		obj->ComponentOnEnable();
 	}
 }
 
@@ -59,7 +59,7 @@ void CScene::SceneUpdate()
 
 	for (CGameObject* obj : objList)
 	{
-		obj->Update();
+		obj->ComponentUpdate();
 	}
 }
 
@@ -67,7 +67,7 @@ void CScene::SceneRender()
 {
 	for (CGameObject* obj : objList)
 	{
-		obj->Render();
+		obj->ComponentRender();
 	}
 
 	Render();
@@ -77,7 +77,7 @@ void CScene::SceneExit()
 {
 	for (CGameObject* obj : objList)
 	{
-		obj->OnDisable();
+		obj->ComponentOnDisable();
 	}
 	active = false;
 	Exit();
@@ -87,7 +87,7 @@ void CScene::SceneRelease()
 {
 	for (CGameObject* obj : objList)
 	{
-		obj->Release();
+		obj->ComponentRelease();
 		delete obj;
 	}
 	objList.clear();
