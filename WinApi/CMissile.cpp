@@ -27,18 +27,18 @@ void CMissile::Update()
 {
 	pos += dir * speed * DT;
 
-	if (pos.x < 100 || pos.x > CGame::WINSIZE.x ||
-		pos.y < 100 || pos.y > CGame::WINSIZE.y)
+	if (worldPos.x < 100 || worldPos.x > CGame::WINSIZE.x ||
+		worldPos.y < 100 || worldPos.y > CGame::WINSIZE.y)
 		EVENT->DeleteGameObject(GetScene(), this);
 }
 
 void CMissile::Render()
 {
 	RENDER->Ellipse(
-		pos.x - scale.x * 0.5f,
-		pos.y - scale.y * 0.5f,
-		pos.x + scale.x * 0.5f,
-		pos.y + scale.y * 0.5f);
+		worldPos.x - scale.x * 0.5f,
+		worldPos.y - scale.y * 0.5f,
+		worldPos.x + scale.x * 0.5f,
+		worldPos.y + scale.y * 0.5f);
 }
 
 void CMissile::OnDisable()

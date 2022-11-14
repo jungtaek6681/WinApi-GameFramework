@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CPlayer.h"
 
-#include "CMissile.h"
+#include "CWeapon.h"
 
 CPlayer::CPlayer()
 {
@@ -16,6 +16,13 @@ CPlayer::~CPlayer()
 
 void CPlayer::Init()
 {
+	CWeapon* leftWeapon = new CWeapon();
+	leftWeapon->SetPos(Vec2(-50, -20));
+	AddChild(leftWeapon);
+
+	CWeapon* rightWeapon = new CWeapon();
+	rightWeapon->SetPos(Vec2(+50, -20));
+	AddChild(rightWeapon);
 }
 
 void CPlayer::OnEnable()
@@ -43,20 +50,15 @@ void CPlayer::Update()
 	{
 		pos.y += speed * DT;
 	}
-
-	if (INPUT->ButtonDown(VK_SPACE))
-	{
-		CreateMissile();
-	}
 }
 
 void CPlayer::Render()
 {
 	RENDER->Rect(
-		pos.x - scale.x * 0.5f,
-		pos.y - scale.y * 0.5f,
-		pos.x + scale.x * 0.5f,
-		pos.y + scale.y * 0.5f);
+		worldPos.x - scale.x * 0.5f,
+		worldPos.y - scale.y * 0.5f,
+		worldPos.x + scale.x * 0.5f,
+		worldPos.y + scale.y * 0.5f);
 }
 
 void CPlayer::OnDisable()
@@ -65,11 +67,4 @@ void CPlayer::OnDisable()
 
 void CPlayer::Release()
 {
-}
-
-void CPlayer::CreateMissile()
-{
-	CMissile* missile = new CMissile();
-	missile->SetPos(pos);
-	EVENT->AddGameObject(GetScene(), missile);
 }

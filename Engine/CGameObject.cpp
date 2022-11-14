@@ -31,6 +31,13 @@ void CGameObject::ComponentUpdate()
 	if (IsReservedDelete())
 		return;
 
+	// 부모 게임오브젝트가 있는 경우, 위치는 부모를 기준으로한 상대위치
+	if (GetOwner() != nullptr)
+		worldPos = GetOwner()->GetWorldPos() + pos;
+	// 부모 게임오브젝트가 없는 경우, 위치는 월드를 기준으로한 절대위치
+	else
+		worldPos = pos;
+
 	Update();
 	Composite::ComponentUpdate();
 }

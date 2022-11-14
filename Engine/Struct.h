@@ -13,7 +13,7 @@ struct Vec2
 	{
 	}
 
-	Vec2 operator+(const Vec2& other)
+	Vec2 operator+(const Vec2& other) const
 	{
 		return Vec2(x + other.x, y + other.y);
 	}
@@ -26,7 +26,7 @@ struct Vec2
 		return *this;
 	}
 
-	Vec2 operator-(const Vec2& other)
+	Vec2 operator-(const Vec2& other) const
 	{
 		return Vec2(x - other.x, y - other.y);
 	}
@@ -40,7 +40,7 @@ struct Vec2
 	}
 
 	template <typename T>
-	Vec2 operator*(const T& num)
+	Vec2 operator*(const T& num) const
 	{
 		return Vec2(x * num, y * num);
 	}
@@ -55,7 +55,7 @@ struct Vec2
 	}
 
 	template <typename T>
-	Vec2 operator/(const T& num)
+	Vec2 operator/(const T& num) const
 	{
 		assert(0 != num && "Vector cannot divide by 0");
 		return Vec2(x / num, y / num);

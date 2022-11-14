@@ -13,8 +13,13 @@
 // 컴포넌트의 경우 필요한 객체에만 조립식으로 붙일 수 있음
 
 template <typename T>
+class Composite;
+class CScene;
+
+template <typename T>
 class Component
 {
+	friend Composite<T>;
 public:
 	Component() {}
 	virtual ~Component() {}
@@ -30,14 +35,17 @@ public:
 public:
 	T*				GetOwner()				{ return owner; }
 	bool			IsActive()				{ return active; }
+	CScene*			GetScene()				{ return (owner == nullptr) ? scene : owner->GetScene(); }
 
 protected:
 	void			SetOwner(T* owner)		{ this->owner = owner; }
 	void			SetActive(bool active)	{ this->active = active; }
+	void			SetScene(CScene* scene) { this->scene = scene; }
 
 protected:
 	T*				owner					= nullptr;
 	bool			active					= false;
+	CScene*			scene					= nullptr;
 };
 
 template <typename T>

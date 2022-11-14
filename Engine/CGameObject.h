@@ -11,12 +11,11 @@ public:
 	virtual ~CGameObject();
 
 public:
-	CScene*			GetScene()						{ return scene; }
 	const wstring&	GetName()						{ return name; }
 	const Vec2&		GetPos()						{ return pos; }
+	const Vec2&		GetWorldPos()					{ return worldPos; }
 	const Vec2&		GetScale()						{ return scale; }
 
-	void			SetScene(CScene* scene)			{ this->scene = scene; }
 	void			SetName(const wstring& name)	{ this->name = name; }
 	void			SetPos(const Vec2& pos)			{ this->pos = pos; }
 	void			SetScale(const Vec2& scale)		{ this->scale = scale; }
@@ -24,9 +23,9 @@ public:
 	bool			IsReservedDelete()				{ return reservedDelete; }
 
 protected:
-	CScene*			scene;
 	wstring			name;
 	Vec2			pos;
+	Vec2			worldPos;
 	Vec2			scale;
 
 private:

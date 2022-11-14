@@ -52,6 +52,9 @@
     <ClInclude Include="CMissile.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="CWeapon.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinApi.cpp">
@@ -73,6 +76,9 @@
       <Filter>GameObject</Filter>
     </ClCompile>
     <ClCompile Include="CMissile.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="CWeapon.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>
