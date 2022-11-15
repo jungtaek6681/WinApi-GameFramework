@@ -10,6 +10,7 @@
 #include "CSceneManager.h"
 #include "CEventManager.h"
 #include "CCollisionManager.h"
+#include "CPathManager.h"
 
 // Interface
 #include "IRender.h"

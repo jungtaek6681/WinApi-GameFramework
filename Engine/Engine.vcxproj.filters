@@ -75,6 +75,9 @@
     <ClInclude Include="CCollisionManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
+    <ClInclude Include="CPathManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -108,6 +111,9 @@
       <Filter>Component</Filter>
     </ClCompile>
     <ClCompile Include="CCollisionManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CPathManager.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
   </ItemGroup>

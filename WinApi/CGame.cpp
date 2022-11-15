@@ -65,6 +65,7 @@ void CGame::Init(HINSTANCE hInstance)
 	SINGLE(CSceneManager)->Init();
 	SINGLE(CEventManager)->Init();
 	SINGLE(CCollisionManager)->Init();
+	SINGLE(CPathManager)->Init();
 
 	// TODO : ¾À Ãß°¡
 	SINGLE(CSceneManager)->AddScene(SceneType::Title,	new CSceneTitle());
@@ -99,6 +100,7 @@ void CGame::Release()
 	SINGLE(CSceneManager)->Release();
 	SINGLE(CEventManager)->Release();
 	SINGLE(CCollisionManager)->Release();
+	SINGLE(CPathManager)->Release();
 }
 
 void CGame::Input()
