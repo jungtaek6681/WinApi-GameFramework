@@ -8,7 +8,7 @@ CMissile::CMissile()
 	name = TEXT("πÃªÁ¿œ");
 	scale = Vec2(20, 20);
 	dir = Vec2(0, -1);
-	speed = 400.f;
+	speed = 200.f;
 }
 
 CMissile::~CMissile()

@@ -50,5 +50,16 @@ void CWeapon::CreateMissile()
 {
 	CMissile* missile = new CMissile();
 	missile->SetPos(worldPos + Vec2(0, -50));
+	missile->SetDir(Vec2(0, -1));
 	EVENT->AddGameObject(GetScene(), missile);
+
+	CMissile* missile1 = new CMissile();
+	missile1->SetPos(worldPos + Vec2(0, -50));
+	missile1->SetDir(Vec2(1, -1));
+	EVENT->AddGameObject(GetScene(), missile1);
+
+	CMissile* missile2 = new CMissile();
+	missile2->SetPos(worldPos + Vec2(0, -50));
+	missile2->SetDir(Vec2(-1, -1));
+	EVENT->AddGameObject(GetScene(), missile2);
 }
