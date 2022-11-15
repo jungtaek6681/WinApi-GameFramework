@@ -28,6 +28,7 @@ void CPlayer::Init()
 
 	CCollider* collider = new CCollider();
 	collider->SetScale(Vec2(90, 90));
+	collider->SetLayer(Layer::Player);
 	AddChild(collider);
 }
 

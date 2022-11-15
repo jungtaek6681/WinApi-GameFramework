@@ -17,6 +17,10 @@ CMissile::~CMissile()
 
 void CMissile::Init()
 {
+	CCollider* collider = new CCollider();
+	collider->SetScale(Vec2(20, 20));
+	collider->SetLayer(Layer::Missile);
+	AddChild(collider);
 }
 
 void CMissile::OnEnable()
@@ -27,8 +31,8 @@ void CMissile::Update()
 {
 	pos += dir * speed * DT;
 
-	if (worldPos.x < 100 || worldPos.x > CGame::WINSIZE.x ||
-		worldPos.y < 100 || worldPos.y > CGame::WINSIZE.y)
+	if (worldPos.x < 0 || worldPos.x > CGame::WINSIZE.x ||
+		worldPos.y < 0 || worldPos.y > CGame::WINSIZE.y)
 		EVENT->DeleteObject(GetScene(), this);
 }
 

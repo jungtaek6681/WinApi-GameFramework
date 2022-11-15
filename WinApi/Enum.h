@@ -9,5 +9,19 @@ enum SceneType
 	Title,
 	Stage01,
 
-	Size,
+	SceneSize,
+};
+
+//========================================
+//##				·¹ÀÌ¾î				##
+//========================================
+
+enum Layer
+{
+	Default,
+	Player,
+	Monster,
+	Missile,
+
+	LayerSize,
 };

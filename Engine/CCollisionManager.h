@@ -10,6 +10,9 @@ private:
 	virtual ~CCollisionManager();
 
 public:
+	static const UINT MAXLAYER = 64;
+
+public:
 	void Init();
 	void Update();
 	void Release();
@@ -17,7 +20,12 @@ public:
 	void AddCollider(CCollider* collider);
 	void RemoveCollider(CCollider* collider);
 
+	void CheckLayer(UINT left, UINT right);
+	void UnCheckLayer(UINT left, UINT right);
+	void ResetCheck();
+
 private:
-	list<CCollider*> colliderList;
+	array<list<CCollider*>, MAXLAYER>		colliderList;
+	array<array<bool, MAXLAYER>, MAXLAYER>	layerMask;
 };
 

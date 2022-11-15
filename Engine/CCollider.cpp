@@ -3,6 +3,7 @@
 
 CCollider::CCollider()
 {
+	layer	= 0;
 	pos		= Vec2(0, 0);
 	offset	= Vec2(0, 0);
 	scale	= Vec2(0, 0);

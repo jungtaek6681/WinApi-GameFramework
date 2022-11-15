@@ -70,6 +70,10 @@ void CGame::Init(HINSTANCE hInstance)
 	SINGLE(CSceneManager)->AddScene(SceneType::Title,	new CSceneTitle());
 	SINGLE(CSceneManager)->AddScene(SceneType::Stage01,	new CSceneStage01());
 
+	// TODO : 충돌 레이어 설정
+	SINGLE(CCollisionManager)->CheckLayer(Layer::Player, Layer::Monster);
+	SINGLE(CCollisionManager)->CheckLayer(Layer::Monster, Layer::Missile);
+
 	// 씬 시작
 	SINGLE(CSceneManager)->SetStartScene(SceneType::Title);
 }
