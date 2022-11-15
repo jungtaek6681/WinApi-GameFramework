@@ -38,6 +38,11 @@ void CScene::DeleteAllObject()
 	}
 }
 
+void CScene::AddRenderer(IRender* renderer)
+{
+	renderPQueue.push(make_pair(renderer->zOrder, renderer));
+}
+
 void CScene::SceneInit()
 {
 	Init();
@@ -68,6 +73,13 @@ void CScene::SceneRender()
 	for (CGameObject* obj : objList)
 	{
 		obj->ComponentRender();
+	}
+
+	while (!renderPQueue.empty())
+	{
+		pair<float, IRender*> top = renderPQueue.top();
+		renderPQueue.pop();
+		top.second->Render();
 	}
 
 	Render();

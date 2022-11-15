@@ -16,6 +16,8 @@ public:
 	void				DeleteGameObject(CGameObject* obj);
 	void				DeleteAllObject();
 
+	void				AddRenderer(IRender* renderer);
+
 private:
 	// 순수가상함수 :
 	// 함수를 추상화하여 구체화하지 않을 경우 인스턴스 생성을 막음
@@ -37,7 +39,8 @@ private:
 	void				SceneRelease();		
 
 private:
-	list<CGameObject*>	objList;
-	bool				active;
+	list<CGameObject*>						objList;
+	bool									active;
+	priority_queue<pair<float, IRender*>>	renderPQueue;
 };
 

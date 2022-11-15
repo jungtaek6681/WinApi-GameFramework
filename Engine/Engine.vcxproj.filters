@@ -13,6 +13,9 @@
     <Filter Include="Asset">
       <UniqueIdentifier>{7919b778-da00-457d-9e54-53d41a65d747}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Interface">
+      <UniqueIdentifier>{a59cf011-13bf-4957-8682-0ffc86b90a92}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -59,6 +62,9 @@
     </ClInclude>
     <ClInclude Include="Component.h">
       <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="IRender.h">
+      <Filter>Interface</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

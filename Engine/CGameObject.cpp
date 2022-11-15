@@ -6,6 +6,7 @@ CGameObject::CGameObject()
 	name	= TEXT("");
 	pos		= Vec2(0, 0);
 	scale	= Vec2(0, 0);
+	zOrder	= 0;
 }
 
 CGameObject::~CGameObject()
@@ -45,8 +46,8 @@ void CGameObject::ComponentRender()
 	if (IsReservedDelete())
 		return;
 
+	GetScene()->AddRenderer(this);
 	Composite::ComponentRender();
-	Render();
 }
 
 void CGameObject::ComponentOnDisable()

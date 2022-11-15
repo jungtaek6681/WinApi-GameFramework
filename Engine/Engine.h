@@ -10,6 +10,9 @@
 #include "CSceneManager.h"
 #include "CEventManager.h"
 
+// Interface
+#include "IRender.h"
+
 // Asset
 #include "CScene.h"
 #include "CGameObject.h"

@@ -2,7 +2,7 @@
 class CEventManager;
 class CScene;
 
-class CGameObject : public Composite<CGameObject>
+class CGameObject : public Composite<CGameObject>, public IRender
 {
 	friend CEventManager;
 	friend CScene;
@@ -25,12 +25,13 @@ protected:
 	Vec2			pos;
 	Vec2			worldPos;
 	Vec2			scale;
+	// float		zOrder;
 
 private:
 	virtual void	Init()		= 0;
 	virtual void	OnEnable()	= 0;
 	virtual void	Update()	= 0;
-	virtual void	Render()	= 0;
+	//virtual void	Render()	= 0;
 	virtual void	OnDisable()	= 0;
 	virtual void	Release()	= 0;
 

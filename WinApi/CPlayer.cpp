@@ -18,10 +18,12 @@ void CPlayer::Init()
 {
 	CWeapon* leftWeapon = new CWeapon();
 	leftWeapon->SetPos(Vec2(-50, -20));
+	leftWeapon->SetZOrder(-1);
 	AddChild(leftWeapon);
 
 	CWeapon* rightWeapon = new CWeapon();
 	rightWeapon->SetPos(Vec2(+50, -20));
+	rightWeapon->SetZOrder(+1);
 	AddChild(rightWeapon);
 }
 
