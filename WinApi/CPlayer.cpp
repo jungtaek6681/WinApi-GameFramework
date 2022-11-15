@@ -25,6 +25,10 @@ void CPlayer::Init()
 	rightWeapon->SetPos(Vec2(+50, -20));
 	rightWeapon->SetZOrder(+1);
 	AddChild(rightWeapon);
+
+	CCollider* collider = new CCollider();
+	collider->SetScale(Vec2(90, 90));
+	AddChild(collider);
 }
 
 void CPlayer::OnEnable()

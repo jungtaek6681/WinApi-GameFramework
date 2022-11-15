@@ -13,6 +13,9 @@
 // Interface
 #include "IRender.h"
 
+// Component
+#include "CCollider.h"
+
 // Asset
 #include "CScene.h"
 #include "CGameObject.h"

@@ -16,6 +16,9 @@
     <Filter Include="Interface">
       <UniqueIdentifier>{a59cf011-13bf-4957-8682-0ffc86b90a92}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Component">
+      <UniqueIdentifier>{c4a3e0c2-ae0b-4ca7-8bed-ef9bfbdf57ea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -66,6 +69,9 @@
     <ClInclude Include="IRender.h">
       <Filter>Interface</Filter>
     </ClInclude>
+    <ClInclude Include="CCollider.h">
+      <Filter>Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -94,6 +100,9 @@
     </ClCompile>
     <ClCompile Include="CEventManager.cpp">
       <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollider.cpp">
+      <Filter>Component</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
