@@ -17,6 +17,7 @@ void CEventManager::Update()
 {
 	ProgressAddGameObject();
 	ProgressDeleteGameObject();
+	ProgressAddComponent();
 	ProgressChangeScene();
 }
 
@@ -27,6 +28,11 @@ void CEventManager::Release()
 void CEventManager::AddGameObject(CScene* scene, CGameObject* obj)
 {
 	addGameObjectQueue.push(make_pair(scene, obj));
+}
+
+void CEventManager::AddChild(CGameObject* parent, Component<CGameObject>* child)
+{
+	addChildQueue.push(make_pair(parent, child));
 }
 
 void CEventManager::DeleteGameObject(CScene* scene, CGameObject* obj)
@@ -47,6 +53,17 @@ void CEventManager::ProgressAddGameObject()
 		CGameObject* obj = addGameObjectQueue.front().second;
 		addGameObjectQueue.pop();
 		scene->AddGameObject(obj);
+	}
+}
+
+void CEventManager::ProgressAddComponent()
+{
+	while (!addChildQueue.empty())
+	{
+		CGameObject* parent = addChildQueue.front().first;
+		Component<CGameObject>* child = addChildQueue.front().second;
+		addChildQueue.pop();
+		parent->AddChild(child);
 	}
 }
 
