@@ -35,7 +35,7 @@ private:
 
 	static UINT		colliderCount;					// 충돌체가 생성될때마다 증가하는 값
 	UINT			id;								// 충돌체의 ID (게임에서 중복되지 않는 유일한 ID)
-
+	UINT			count;							// 충돌중인 충돌체 갯수
 
 	UINT			layer;							// 충돌체의 레이어
 	Vec2			pos;

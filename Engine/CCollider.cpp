@@ -6,6 +6,7 @@ UINT CCollider::colliderCount = 0;
 CCollider::CCollider()
 {
 	id		= colliderCount++;
+	count	= 0;
 	layer	= 0;
 	pos		= Vec2(0, 0);
 	offset	= Vec2(0, 0);
@@ -29,7 +30,10 @@ bool CCollider::IsCollision(CCollider* other)
 
 void CCollider::Render()
 {
-	RENDER->SetPen(PenType::Solid, RGB(0, 255, 0));
+	if (count > 0)
+		RENDER->SetPen(PenType::Solid, RGB(255, 0, 0));
+	else
+		RENDER->SetPen(PenType::Solid, RGB(0, 255, 0));
 	RENDER->SetBrush(BrushType::Null);
 
 	RENDER->Rect(
@@ -74,6 +78,7 @@ void CCollider::ComponentRelease()
 
 void CCollider::OnCollisionEnter(CCollider* other)
 {
+	count++;
 	GetOwner()->OnCollisionEnter(other);
 }
 
@@ -84,5 +89,6 @@ void CCollider::OnCollisionStay(CCollider* other)
 
 void CCollider::OnCollisionExit(CCollider* other)
 {
+	count--;
 	GetOwner()->OnCollisionExit(other);
 }
