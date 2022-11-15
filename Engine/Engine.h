@@ -9,6 +9,7 @@
 #include "CInputManager.h"
 #include "CSceneManager.h"
 #include "CEventManager.h"
+#include "CCollisionManager.h"
 
 // Interface
 #include "IRender.h"

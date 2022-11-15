@@ -64,6 +64,7 @@ void CGame::Init(HINSTANCE hInstance)
 	SINGLE(CInputManager)->Init();
 	SINGLE(CSceneManager)->Init();
 	SINGLE(CEventManager)->Init();
+	SINGLE(CCollisionManager)->Init();
 
 	// TODO : 씬 추가
 	SINGLE(CSceneManager)->AddScene(SceneType::Title,	new CSceneTitle());
@@ -93,6 +94,7 @@ void CGame::Release()
 	SINGLE(CInputManager)->Release();
 	SINGLE(CSceneManager)->Release();
 	SINGLE(CEventManager)->Release();
+	SINGLE(CCollisionManager)->Release();
 }
 
 void CGame::Input()
@@ -110,6 +112,10 @@ void CGame::Update()
 
 	SINGLE(CTimeManager)->Update();
 	SINGLE(CSceneManager)->Update();
+
+	// 순서 주의! : 충돌 매니저는 업데이트 가장 마지막에 진행
+	// 씬에서 움직인 결과위치를 기준으로 충돌판정을 진행하기 위해
+	SINGLE(CCollisionManager)->Update();
 }
 
 void CGame::Render()

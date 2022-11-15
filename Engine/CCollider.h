@@ -18,8 +18,10 @@ private:
 	void			Render()						override;
 
 	void			ComponentInit()					override;
+	void			ComponentOnEnable()				override;
 	void			ComponentUpdate()				override;
 	void			ComponentRender()				override;
+	void			ComponentOnDisable()			override;
 	void			ComponentRelease()				override;
 
 	Vec2			pos;

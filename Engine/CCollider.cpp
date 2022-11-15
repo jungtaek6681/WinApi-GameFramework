@@ -32,6 +32,12 @@ void CCollider::ComponentInit()
 {
 }
 
+void CCollider::ComponentOnEnable()
+{
+	SINGLE(CCollisionManager)->AddCollider(this);
+	Component::ComponentOnEnable();
+}
+
 void CCollider::ComponentUpdate()
 {
 	pos = GetOwner()->GetWorldPos() + offset;
@@ -40,6 +46,12 @@ void CCollider::ComponentUpdate()
 void CCollider::ComponentRender()
 {
 	GetScene()->AddRenderer(this);
+}
+
+void CCollider::ComponentOnDisable()
+{
+	Component::ComponentOnDisable();
+	SINGLE(CCollisionManager)->RemoveCollider(this);
 }
 
 void CCollider::ComponentRelease()
