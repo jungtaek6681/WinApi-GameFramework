@@ -82,16 +82,35 @@ void CCollisionManager::CollisionUpdate(UINT left, UINT right)
 				// 이전 프레임 O, 현재 프레임 O
 				if (prevCollision[collisionID])
 				{
-					leftCollider->OnCollisionStay(rightCollider);
-					rightCollider->OnCollisionStay(leftCollider);
+					// 충돌체 중 하나라도 삭제예정인 경우 충돌 해제
+					if (leftCollider->IsReservedDelete() || rightCollider->IsReservedDelete())
+					{
+						leftCollider->OnCollisionExit(rightCollider);
+						rightCollider->OnCollisionExit(leftCollider);
+						prevCollision[collisionID] = false;
+					}
+					else
+					{
+						leftCollider->OnCollisionStay(rightCollider);
+						rightCollider->OnCollisionStay(leftCollider);
+						prevCollision[collisionID] = true;
+					}
 				}
 				// 이전 프레임 X, 현재 프레임 O
 				else
 				{
-					leftCollider->OnCollisionEnter(rightCollider);
-					rightCollider->OnCollisionEnter(leftCollider);
+					// 충돌체 중 하나라도 삭제예정인 경우 충돌 진입을 하지 않음
+					if (leftCollider->IsReservedDelete() || rightCollider->IsReservedDelete())
+					{
+						prevCollision[collisionID] = false;
+					}
+					else
+					{
+						leftCollider->OnCollisionEnter(rightCollider);
+						rightCollider->OnCollisionEnter(leftCollider);
+						prevCollision[collisionID] = true;
+					}
 				}
-				prevCollision[collisionID] = true;
 			}
 			else
 			{
