@@ -15,5 +15,6 @@ private:
 
 private:
 	float	speed;
+	CImage* image;
 };
 

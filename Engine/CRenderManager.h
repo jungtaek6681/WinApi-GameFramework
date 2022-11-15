@@ -1,5 +1,7 @@
 #pragma once
 
+class CImage;
+
 enum class PenType { Solid, Dot, Dash, Null };
 enum class BrushType { Solid, Null };
 enum class TextAlign { Top, Bottom, Left, Right, Center };
@@ -24,6 +26,11 @@ public:
 	void		Circle(float x, float y, float radius);							// 원 그리기
 	void		Ellipse(float startX, float startY, float endX, float endY);	// 타원 그리기
 	void		Text(float x, float y, wstring str);							// 텍스트 그리기
+
+	void		BitImage(CImage* pImg, float startX, float startY, float endX, float endY);			// 이미지 그리기
+	void		StrectchImage(CImage* pImg, float startX, float startY, float endX, float endY);	// 크기변경이미지 그리기
+	void		TransparentImage(CImage* pImg, float startX, float startY, float endX, float endY,	// 투명이미지 그리기
+								COLORREF transparent = RGB(255, 0, 255));
 
 	void		SetPen(PenType type = PenType::Solid, COLORREF color = RGB(0, 0, 0), int width = 1);
 	void		SetBrush(BrushType type = BrushType::Solid, COLORREF color = RGB(255, 255, 255));

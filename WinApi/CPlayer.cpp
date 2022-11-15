@@ -8,6 +8,7 @@ CPlayer::CPlayer()
 	name	= TEXT("플레이어");
 	scale	= Vec2(100, 100);
 	speed	= 200.f;
+	image	= nullptr;
 }
 
 CPlayer::~CPlayer()
@@ -30,6 +31,10 @@ void CPlayer::Init()
 	collider->SetScale(Vec2(90, 90));
 	collider->SetLayer(Layer::Player);
 	AddChild(collider);
+
+	image = new CImage();
+	wstring path = PATH + TEXT("\\..\\Resource\\Image\\Player.bmp");
+	image->Load(path);
 }
 
 void CPlayer::OnEnable()
@@ -61,11 +66,13 @@ void CPlayer::Update()
 
 void CPlayer::Render()
 {
-	RENDER->Rect(
+	RENDER->TransparentImage(
+		image,
 		worldPos.x - scale.x * 0.5f,
 		worldPos.y - scale.y * 0.5f,
 		worldPos.x + scale.x * 0.5f,
-		worldPos.y + scale.y * 0.5f);
+		worldPos.y + scale.y * 0.5f
+	);
 }
 
 void CPlayer::OnDisable()
@@ -74,4 +81,5 @@ void CPlayer::OnDisable()
 
 void CPlayer::Release()
 {
+	delete image;
 }

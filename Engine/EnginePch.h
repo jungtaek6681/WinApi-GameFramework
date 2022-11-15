@@ -3,6 +3,9 @@
 // WinApi 프레임워크
 #include <Windows.h>
 
+// WinApi img32 라이브러리
+#pragma comment(lib, "MsImg32.lib")
+
 // C++ 표준 라이브러리
 #include <cassert>
 #include <chrono>

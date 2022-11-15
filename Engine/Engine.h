@@ -21,3 +21,5 @@
 // Asset
 #include "CScene.h"
 #include "CGameObject.h"
+#include "CResource.h"
+#include "CImage.h"

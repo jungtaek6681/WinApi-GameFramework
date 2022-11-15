@@ -145,6 +145,23 @@ void CRenderManager::Text(float x, float y, wstring str)
 	TextOut(hMemDC, (int)x, (int)y, str.c_str(), (int)str.size());
 }
 
+void CRenderManager::BitImage(CImage* pImg, float startX, float startY, float endX, float endY)
+{
+	BitBlt(hMemDC, (int)startX, (int)startY, (int)endX, (int)endY, pImg->GetImageDC(), 0, 0, SRCCOPY);
+}
+
+void CRenderManager::StrectchImage(CImage* pImg, float startX, float startY, float endX, float endY)
+{
+	StretchBlt(hMemDC, (int)startX, (int)startY, (int)(endX - startX), (int)(endY - startY),
+		pImg->GetImageDC(), 0, 0, pImg->GetBmpWidth(), pImg->GetBmpHeight(), SRCCOPY);
+}
+
+void CRenderManager::TransparentImage(CImage* pImg, float startX, float startY, float endX, float endY, COLORREF transparent)
+{
+	TransparentBlt(hMemDC, (int)startX, (int)startY, (int)(endX - startX), (int)(endY - startY),
+		pImg->GetImageDC(), 0, 0, pImg->GetBmpWidth(), pImg->GetBmpHeight(), transparent);
+}
+
 void CRenderManager::SetPen(PenType type, COLORREF color, int width)
 {
 	// 선택하는 펜이 현재 펜과 동일할 경우 새로 만들지 않음
