@@ -17,6 +17,7 @@ void CEventManager::Update()
 {
 	ProgressAddGameObject();
 	ProgressDeleteGameObject();
+	ProgressChangeScene();
 }
 
 void CEventManager::Release()
@@ -31,6 +32,11 @@ void CEventManager::AddGameObject(CScene* scene, CGameObject* obj)
 void CEventManager::DeleteGameObject(CScene* scene, CGameObject* obj)
 {
 	deleteGameObjectQueue.push(make_pair(scene, obj));
+}
+
+void CEventManager::ChangeScene(int sceneType)
+{
+	changeSceneValue = sceneType;
 }
 
 void CEventManager::ProgressAddGameObject()
@@ -72,5 +78,15 @@ void CEventManager::ProgressDeleteGameObject()
 		CGameObject* obj = deleteGameObjectQueue.front().second;
 		deleteGameObjectQueue.pop();
 		obj->SetReservedDelete();
+	}
+}
+
+void CEventManager::ProgressChangeScene()
+{
+	// 씬 전환 이벤트가 있는 경우 씬 전환 진행
+	if (changeSceneValue != -1)
+	{
+		SINGLE(CSceneManager)->ChangeScene(changeSceneValue);
+		changeSceneValue = -1;
 	}
 }

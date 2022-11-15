@@ -23,7 +23,7 @@ void CSceneTitle::Update()
 {
 	if (INPUT->ButtonDown(VK_SPACE))
 	{
-		SINGLE(CSceneManager)->ChangeScene(SceneType::Stage01);
+		EVENT->ChangeScene(SceneType::Stage01);
 	}
 }
 
