@@ -84,6 +84,9 @@
     <ClInclude Include="CResource.h">
       <Filter>Asset\Resource</Filter>
     </ClInclude>
+    <ClInclude Include="CImage.h">
+      <Filter>Asset\Resource</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -123,6 +126,9 @@
       <Filter>Manager</Filter>
     </ClCompile>
     <ClCompile Include="CResource.cpp">
+      <Filter>Asset\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="CImage.cpp">
       <Filter>Asset\Resource</Filter>
     </ClCompile>
   </ItemGroup>

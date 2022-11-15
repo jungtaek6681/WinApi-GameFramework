@@ -30,6 +30,8 @@ public:
 	void		SetText(int size = 10, COLORREF color = RGB(0, 0, 0), TextAlign align = TextAlign::Center);
 	void		SetTextBackMode(TextBackMode mode = TextBackMode::Null, COLORREF color = RGB(255, 255, 255));
 
+	HDC			GetMemDC() { return hMemDC; }
+
 private:
 	HWND			hWnd;			// 윈도우 핸들
 	HDC				hDC;			// 프론트버퍼(결과 게임화면)에 그릴 dc
@@ -58,3 +60,4 @@ private:
 };
 
 #define RENDER		CRenderManager::GetInstance()
+#define MAINDC		CRenderManager::GetInstance()->GetMemDC()
