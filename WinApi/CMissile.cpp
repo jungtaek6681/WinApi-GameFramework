@@ -29,7 +29,7 @@ void CMissile::Update()
 
 	if (worldPos.x < 100 || worldPos.x > CGame::WINSIZE.x ||
 		worldPos.y < 100 || worldPos.y > CGame::WINSIZE.y)
-		EVENT->DeleteGameObject(GetScene(), this);
+		EVENT->DeleteObject(GetScene(), this);
 }
 
 void CMissile::Render()

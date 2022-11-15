@@ -20,8 +20,6 @@ public:
 	void			SetPos(const Vec2& pos)			{ this->pos = pos; }
 	void			SetScale(const Vec2& scale)		{ this->scale = scale; }
 
-	bool			IsReservedDelete()				{ return reservedDelete; }
-
 protected:
 	wstring			name;
 	Vec2			pos;
@@ -42,9 +40,5 @@ private:
 	void			ComponentRender()		override;
 	void			ComponentOnDisable()	override;
 	void			ComponentRelease()		override;
-
-	void			SetReservedDelete()		{ reservedDelete = true; }	// 게임오브젝트 삭제 예약
-
-	bool			reservedDelete;										// 게임오브젝트가 삭제예정인지 여부
 };
 

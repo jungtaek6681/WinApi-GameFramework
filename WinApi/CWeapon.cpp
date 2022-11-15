@@ -49,6 +49,6 @@ void CWeapon::Release()
 void CWeapon::CreateMissile()
 {
 	CMissile* missile = new CMissile();
-	missile->SetPos(worldPos + Vec2(0, -50));
-	EVENT->AddGameObject(GetScene(), missile);
+	missile->SetPos(Vec2(0, -50));
+	EVENT->AddChild(this, missile);
 }

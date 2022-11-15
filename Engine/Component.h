@@ -12,6 +12,7 @@
 // 상속의 경우 모든 상속하는 자식에게 반드시 기능이 포함되지만
 // 컴포넌트의 경우 필요한 객체에만 조립식으로 붙일 수 있음
 
+class CEventManager;
 template <typename T>
 class Composite;
 class CScene;
@@ -19,6 +20,7 @@ class CScene;
 template <typename T>
 class Component
 {
+	friend CEventManager;
 	friend Composite<T>;
 public:
 	Component() {}
@@ -36,16 +38,21 @@ public:
 	T*				GetOwner()				{ return owner; }
 	bool			IsActive()				{ return active; }
 	CScene*			GetScene()				{ return (owner == nullptr) ? scene : owner->GetScene(); }
+	bool			IsReservedDelete()		{ return reservedDelete; }
 
 protected:
 	void			SetOwner(T* owner)		{ this->owner = owner; }
 	void			SetActive(bool active)	{ this->active = active; }
 	void			SetScene(CScene* scene) { this->scene = scene; }
+	virtual void	SetReservedDelete()		{ reservedDelete = true; }	// 컴포넌트 삭제 예약
+
+	virtual void	DeleteReservedChild()	{}
 
 protected:
 	T*				owner					= nullptr;
 	bool			active					= false;
 	CScene*			scene					= nullptr;
+	bool			reservedDelete			= false;					// 컴포넌트가 삭제예정인지 여부
 };
 
 template <typename T>
@@ -120,6 +127,34 @@ protected:
 		component->SetOwner(nullptr);
 		childList.remove(component);
 		delete component;
+	}
+
+	void SetReservedDelete() override
+	{
+		this->reservedDelete = true;
+		for (Component<T>* component : childList)
+		{
+			component->SetReservedDelete();
+		}
+	}
+
+	void DeleteReservedChild() override
+	{
+		childList.remove_if([&](Component<T>* child) {
+			if (child->IsReservedDelete())
+			{
+				child->SetOwner(nullptr);
+				if (this->IsActive()) child->ComponentOnDisable();
+				child->ComponentRelease();
+				delete child;
+				return true;
+			}
+			else
+			{
+				child->DeleteReservedChild();
+				return false;
+			}
+			});
 	}
 
 protected:
