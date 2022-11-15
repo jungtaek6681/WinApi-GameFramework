@@ -1,8 +1,11 @@
 #include "pch.h"
 #include "CCollider.h"
 
+UINT CCollider::colliderCount = 0;
+
 CCollider::CCollider()
 {
+	id		= colliderCount++;
 	layer	= 0;
 	pos		= Vec2(0, 0);
 	offset	= Vec2(0, 0);
@@ -69,7 +72,17 @@ void CCollider::ComponentRelease()
 {
 }
 
+void CCollider::OnCollisionEnter(CCollider* other)
+{
+	GetOwner()->OnCollisionEnter(other);
+}
+
 void CCollider::OnCollisionStay(CCollider* other)
 {
 	GetOwner()->OnCollisionStay(other);
+}
+
+void CCollider::OnCollisionExit(CCollider* other)
+{
+	GetOwner()->OnCollisionExit(other);
 }

@@ -10,6 +10,7 @@ public:
 	virtual ~CCollider();
 
 public:
+	UINT			GetID()							{ return id; }
 	UINT			GetLayer()						{ return layer; }
 	const Vec2&		GetPos()						{ return pos; }
 	const Vec2&		GetOffset()						{ return offset; }
@@ -32,6 +33,10 @@ private:
 	void			ComponentOnDisable()			override;
 	void			ComponentRelease()				override;
 
+	static UINT		colliderCount;					// 충돌체가 생성될때마다 증가하는 값
+	UINT			id;								// 충돌체의 ID (게임에서 중복되지 않는 유일한 ID)
+
+
 	UINT			layer;							// 충돌체의 레이어
 	Vec2			pos;
 	Vec2			offset;							// 충돌체의 변위차
@@ -39,6 +44,8 @@ private:
 
 private:
 	// 충돌시점 함수
+	void			OnCollisionEnter(CCollider* other);		// 충돌 진입
 	void			OnCollisionStay(CCollider* other);		// 충돌 중
+	void			OnCollisionExit(CCollider* other);		// 충돌 해제
 };
 

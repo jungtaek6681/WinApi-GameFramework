@@ -13,7 +13,7 @@ private:
 	void	OnDisable()			override;
 	void	Release()			override;
 
-	void	OnCollisionStay(CCollider* other)	override;
+	void	OnCollisionEnter(CCollider* other)	override;
 
 private:
 	Vec2	dir;

@@ -43,6 +43,8 @@ private:
 	void			ComponentOnDisable()	override;
 	void			ComponentRelease()		override;
 
-	virtual void	OnCollisionStay(CCollider* other) {};	
+	virtual void	OnCollisionEnter(CCollider* other) {};
+	virtual void	OnCollisionStay(CCollider* other) {};
+	virtual void	OnCollisionExit(CCollider* other) {};
 };
 
