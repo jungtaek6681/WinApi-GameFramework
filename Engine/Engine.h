@@ -11,6 +11,7 @@
 #include "CEventManager.h"
 #include "CCollisionManager.h"
 #include "CPathManager.h"
+#include "CResourceManager.h"
 
 // Interface
 #include "IRender.h"

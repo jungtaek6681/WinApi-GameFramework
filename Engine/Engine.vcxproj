@@ -158,6 +158,7 @@
     <ClInclude Include="CPathManager.h" />
     <ClInclude Include="CRenderManager.h" />
     <ClInclude Include="CResource.h" />
+    <ClInclude Include="CResourceManager.h" />
     <ClInclude Include="CScene.h" />
     <ClInclude Include="CSceneManager.h" />
     <ClInclude Include="CTimeManager.h" />
@@ -180,6 +181,7 @@
     <ClCompile Include="CPathManager.cpp" />
     <ClCompile Include="CRenderManager.cpp" />
     <ClCompile Include="CResource.cpp" />
+    <ClCompile Include="CResourceManager.cpp" />
     <ClCompile Include="CScene.cpp" />
     <ClCompile Include="CSceneManager.cpp" />
     <ClCompile Include="CTimeManager.cpp" />

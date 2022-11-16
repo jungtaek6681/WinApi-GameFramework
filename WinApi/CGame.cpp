@@ -66,6 +66,10 @@ void CGame::Init(HINSTANCE hInstance)
 	SINGLE(CEventManager)->Init();
 	SINGLE(CCollisionManager)->Init();
 	SINGLE(CPathManager)->Init();
+	SINGLE(CResourceManager)->Init();
+
+	// TODO : 리소스 경로 설정
+	SINGLE(CResourceManager)->SetResourceFolder(PATH + TEXT("\\..\\Resource\\"));
 
 	// TODO : 씬 추가
 	SINGLE(CSceneManager)->AddScene(SceneType::Title,	new CSceneTitle());
@@ -101,6 +105,7 @@ void CGame::Release()
 	SINGLE(CEventManager)->Release();
 	SINGLE(CCollisionManager)->Release();
 	SINGLE(CPathManager)->Release();
+	SINGLE(CResourceManager)->Release();
 }
 
 void CGame::Input()

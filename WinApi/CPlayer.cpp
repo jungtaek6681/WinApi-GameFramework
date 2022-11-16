@@ -32,9 +32,7 @@ void CPlayer::Init()
 	collider->SetLayer(Layer::Player);
 	AddChild(collider);
 
-	image = new CImage();
-	wstring path = PATH + TEXT("\\..\\Resource\\Image\\Player.bmp");
-	image->Load(path);
+	image = LOADIMAGE(TEXT("플레이어"), TEXT("Image\\Player.bmp"));
 }
 
 void CPlayer::OnEnable()
@@ -81,5 +79,4 @@ void CPlayer::OnDisable()
 
 void CPlayer::Release()
 {
-	delete image;
 }
