@@ -14,7 +14,13 @@ private:
 	void	Release()		override;
 
 private:
-	float	speed;
-	CImage* image;
+	void	AnimatorUpdate();
+
+	CAnimator*	animator;
+	float		speed;
+
+	Vec2		moveDir;
+	Vec2		lookDir;
+	bool		isMove;
 };
 
