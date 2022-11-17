@@ -22,6 +22,10 @@ public:
 	CImage*			ImageFind(const wstring& key);
 	CImage*			ImageLoad(const wstring& key, const wstring& file);
 
+	// 애니메이션 툴씬 필요
+	//CAnimation*		AnimationFind(const wstring& key);
+	//CAnimation*		AnimationLoad(const wstring& key, const wstring file);
+
 	const wstring&	GetResourceFolder()							{ return resourceFolder; }
 	void			SetResourceFolder(const wstring& folder)	{ this->resourceFolder = folder; }
 
