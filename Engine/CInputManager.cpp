@@ -75,7 +75,13 @@ bool CInputManager::ButtonDown(const int key)
 	return prevKeys[key] == false && curKeys[key] == true;
 }
 
-Vec2 CInputManager::MousePos()
+Vec2 CInputManager::MouseScreenPos()
 {
 	return Vec2((float)mousePos.x, (float)mousePos.y);
 }
+
+Vec2 CInputManager::MouseWorldPos()
+{
+	return CAMERA->ScreenToWorldPoint(Vec2((float)mousePos.x, (float)mousePos.y));
+}
+

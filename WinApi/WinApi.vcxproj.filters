@@ -58,6 +58,9 @@
     <ClInclude Include="CMonster.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="CCameraController.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinApi.cpp">
@@ -85,6 +88,9 @@
       <Filter>GameObject</Filter>
     </ClCompile>
     <ClCompile Include="CMonster.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="CCameraController.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>

@@ -16,7 +16,8 @@ public:
 	bool					ButtonStay(const int key);	// 키를 누르고 있는 중
 	bool					ButtonUp(const int key);	// 키가 올라간 순간
 	bool					ButtonDown(const int key);	// 키가 내려간 순간
-	Vec2					MousePos();					// 현재 마우스 위치
+	Vec2					MouseScreenPos();			// 마우스 화면 위치
+	Vec2					MouseWorldPos();			// 마우스 게임 위치
 
 private:
 	HWND					hWnd;

@@ -4,6 +4,7 @@
 #include "CGame.h"
 #include "CPlayer.h"
 #include "CMonster.h"
+#include "CCameraController.h"
 
 CSceneStage01::CSceneStage01()
 {
@@ -15,18 +16,20 @@ CSceneStage01::~CSceneStage01()
 
 void CSceneStage01::Init()
 {
-	player = new CPlayer();
+	CPlayer* player = new CPlayer();
 	player->SetPos(Vec2(CGame::WINSIZE.x * 0.5f, CGame::WINSIZE.y * 0.5f));
 	AddGameObject(player);
 
 	CMonster* monster = new CMonster();
 	monster->SetPos(Vec2(CGame::WINSIZE.x * 0.5f, 100));
 	AddGameObject(monster);
+
+	CCameraController* controller = new CCameraController();
+	AddGameObject(controller);
 }
 
 void CSceneStage01::Enter()
 {
-	CAMERA->SetTarget(player);
 }
 
 void CSceneStage01::Update()
