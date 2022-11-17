@@ -43,6 +43,11 @@ void CPlayer::Init()
 	animator->CreateAnimation(TEXT("MoveLeftUp"),		moveImage, 0.05f, 16, true, Vec2(0.f, 553.f), Vec2(80.f, 75.f), Vec2(84.f, 0.f));
 
 	AddChild(animator);
+
+	CCollider* collider = new CCollider();
+	collider->SetScale(Vec2(90, 90));
+	collider->SetLayer(Layer::Player);
+	AddChild(collider);
 }
 
 void CPlayer::OnEnable()

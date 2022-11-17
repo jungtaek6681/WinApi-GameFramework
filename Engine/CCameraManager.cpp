@@ -36,3 +36,15 @@ void CCameraManager::Update()
 void CCameraManager::Release()
 {
 }
+
+Vec2 CCameraManager::WorldToScreenPoint(Vec2 worldPoint)
+{
+	Vec2 center = SINGLE(CEngine)->GetWinSize() * 0.5f;
+	return worldPoint - (lookAt - center);
+}
+
+Vec2 CCameraManager::ScreenToWorldPoint(Vec2 screenPoint)
+{
+	Vec2 center = SINGLE(CEngine)->GetWinSize() * 0.5f;
+	return screenPoint + (lookAt - center);
+}

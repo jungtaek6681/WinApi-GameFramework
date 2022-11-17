@@ -15,7 +15,7 @@ CSceneStage01::~CSceneStage01()
 
 void CSceneStage01::Init()
 {
-	CPlayer* player = new CPlayer();
+	player = new CPlayer();
 	player->SetPos(Vec2(CGame::WINSIZE.x * 0.5f, CGame::WINSIZE.y * 0.5f));
 	AddGameObject(player);
 
@@ -26,6 +26,7 @@ void CSceneStage01::Init()
 
 void CSceneStage01::Enter()
 {
+	CAMERA->SetTarget(player);
 }
 
 void CSceneStage01::Update()
@@ -38,6 +39,12 @@ void CSceneStage01::Update()
 
 void CSceneStage01::Render()
 {
+	Vec2 startPos = CAMERA->WorldToScreenPoint(Vec2(0, 0));
+	Vec2 endPos = CAMERA->WorldToScreenPoint(Vec2(CGame::WINSIZE.x, CGame::WINSIZE.y));
+
+	RENDER->SetBrush(BrushType::Null);
+	RENDER->Rect(startPos.x, startPos.y, endPos.x, endPos.y);
+	RENDER->SetBrush();
 }
 
 void CSceneStage01::Exit()

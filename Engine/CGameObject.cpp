@@ -37,6 +37,8 @@ void CGameObject::ComponentUpdate()
 	else
 		worldPos = pos;
 
+	renderPos = SINGLE(CCameraManager)->WorldToScreenPoint(worldPos);
+
 	Update();
 	Composite::ComponentUpdate();
 }

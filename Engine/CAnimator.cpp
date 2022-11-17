@@ -110,7 +110,7 @@ void CAnimator::ComponentUpdate()
 
 void CAnimator::ComponentRender()
 {
-	Vec2 pos = GetOwner()->GetWorldPos();				// 애니메이션이 그려질 위치 확인
+	Vec2 pos = GetOwner()->GetRenderPos();				// 애니메이션이 그려질 위치 확인
 	AniFrame frame = curAnimation->frames[curFrame];	// 애니메이션이 그려질 프레임 확인
 
 	// 프레임 이미지 그리기

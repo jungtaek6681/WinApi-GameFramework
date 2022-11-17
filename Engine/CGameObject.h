@@ -15,6 +15,7 @@ public:
 	const wstring&	GetName()						{ return name; }
 	const Vec2&		GetPos()						{ return pos; }
 	const Vec2&		GetWorldPos()					{ return worldPos; }
+	const Vec2&		GetRenderPos()					{ return renderPos; }
 	const Vec2&		GetScale()						{ return scale; }
 
 	void			SetName(const wstring& name)	{ this->name = name; }
@@ -25,6 +26,7 @@ protected:
 	wstring			name;
 	Vec2			pos;
 	Vec2			worldPos;
+	Vec2			renderPos;
 	Vec2			scale;
 	// float		zOrder;
 

@@ -30,6 +30,8 @@ bool CCollider::IsCollision(CCollider* other)
 
 void CCollider::Render()
 {
+	Vec2 renderPos = CAMERA->WorldToScreenPoint(pos);
+
 	if (count > 0)
 		RENDER->SetPen(PenType::Solid, RGB(255, 0, 0));
 	else
@@ -37,10 +39,10 @@ void CCollider::Render()
 	RENDER->SetBrush(BrushType::Null);
 
 	RENDER->Rect(
-		pos.x - scale.x * 0.5f,
-		pos.y - scale.y * 0.5f,
-		pos.x + scale.x * 0.5f,
-		pos.y + scale.y * 0.5f);
+		renderPos.x - scale.x * 0.5f,
+		renderPos.y - scale.y * 0.5f,
+		renderPos.x + scale.x * 0.5f,
+		renderPos.y + scale.y * 0.5f);
 
 	RENDER->SetPen();
 	RENDER->SetBrush();

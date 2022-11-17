@@ -50,7 +50,13 @@ void CScene::SceneInit()
 
 void CScene::SceneEnter()
 {
+	// 이전 씬의 카메라 상황을 초기화하고 카메라의 위치를 초기 위치로
+	// 씬의 카메라 시작위치가 초기 위치가 아닌경우 씬의 Enter에서 위치를 설정하여 목표위치가 덮어씀
+	CAMERA->SetTarget(nullptr);
+	CAMERA->SetLookAt(SINGLE(CEngine)->GetWinSize() * 0.5f);
+
 	Enter();
+
 	active = true;
 	for (CGameObject* obj : objList)
 	{

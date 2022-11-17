@@ -32,10 +32,10 @@ void CWeapon::Update()
 void CWeapon::Render()
 {
 	RENDER->Rect(
-		worldPos.x - scale.x * 0.5f,
-		worldPos.y - scale.y * 0.5f,
-		worldPos.x + scale.x * 0.5f,
-		worldPos.y + scale.y * 0.5f);
+		renderPos.x - scale.x * 0.5f,
+		renderPos.y - scale.y * 0.5f,
+		renderPos.x + scale.x * 0.5f,
+		renderPos.y + scale.y * 0.5f);
 }
 
 void CWeapon::OnDisable()

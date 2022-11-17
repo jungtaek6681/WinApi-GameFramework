@@ -11,6 +11,9 @@ public:
 	void				Update();
 	void				Release();
 
+	Vec2				WorldToScreenPoint(Vec2 worldPoint);	// 게임위치->화면위치
+	Vec2				ScreenToWorldPoint(Vec2 screenPoint);	// 화면위치->게임위치
+
 	const Vec2&			GetLookAt()						{ return lookAt; }
 	const CGameObject*	GetTarget()						{ return target; }
 
