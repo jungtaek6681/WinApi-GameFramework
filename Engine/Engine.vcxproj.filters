@@ -96,6 +96,9 @@
     <ClInclude Include="CAnimator.h">
       <Filter>Component</Filter>
     </ClInclude>
+    <ClInclude Include="CCameraManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -148,6 +151,9 @@
     </ClCompile>
     <ClCompile Include="CAnimator.cpp">
       <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="CCameraManager.cpp">
+      <Filter>Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

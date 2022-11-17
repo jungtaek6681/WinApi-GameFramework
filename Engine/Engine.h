@@ -12,6 +12,7 @@
 #include "CCollisionManager.h"
 #include "CPathManager.h"
 #include "CResourceManager.h"
+#include "CCameraManager.h"
 
 // Interface
 #include "IRender.h"
