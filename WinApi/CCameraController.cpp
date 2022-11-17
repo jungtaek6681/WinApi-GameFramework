@@ -21,7 +21,7 @@ void CCameraController::Update()
 {
 	if (INPUT->ButtonDown(VK_LBUTTON))
 	{
-		CAMERA->SetLookAt(INPUT->MouseWorldPos());
+		CAMERA->SetTargetPos(INPUT->MouseWorldPos(), 1);
 	}
 }
 

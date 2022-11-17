@@ -3,8 +3,10 @@
 
 CCameraManager::CCameraManager()
 {
-	lookAt	= Vec2(0, 0);
-	target	= nullptr;
+	lookAt			= Vec2(0, 0);
+	targetPos		= Vec2(0, 0);
+	targetObj		= nullptr;
+	timeToTarget	= 0;
 }
 
 CCameraManager::~CCameraManager()
@@ -18,19 +20,21 @@ void CCameraManager::Init()
 void CCameraManager::Update()
 {
 	// 추적할 게임오브젝트가 있을 경우
-	if (nullptr != target)
+	if (nullptr != targetObj)
 	{
-		if (target->IsReservedDelete())
+		if (targetObj->IsReservedDelete())
 		{
 			// 추적할 게임오브젝트가 삭제예정인 경우 추적 해제
-			target = nullptr;
+			targetObj = nullptr;
 		}
 		else
 		{
 			// 추적할 게임오브젝트가 있을 경우 게임오브젝트의 위치를 목표위치로 지정
-			lookAt = target->GetPos();
+			targetPos = targetObj->GetPos();
 		}
 	}
+
+	MoveToTarget();
 }
 
 void CCameraManager::Release()
@@ -47,4 +51,35 @@ Vec2 CCameraManager::ScreenToWorldPoint(Vec2 screenPoint)
 {
 	Vec2 center = SINGLE(CEngine)->GetWinSize() * 0.5f;
 	return screenPoint + (lookAt - center);
+}
+
+void CCameraManager::SetTargetPos(const Vec2& targetPos, float timeToTarget)
+{
+	this->targetPos = targetPos;
+	this->timeToTarget = timeToTarget;
+}
+
+void CCameraManager::SetTargetObj(CGameObject* targetObj)
+{
+	this->targetObj = targetObj;
+}
+
+void CCameraManager::MoveToTarget()
+{
+	timeToTarget -= DT;
+
+	if (timeToTarget <= 0)
+	{
+		// 목표위치까지 남은 시간이 없을 경우 목적지로 현재위치 고정
+		lookAt = targetPos;
+	}
+	else
+	{
+		// 목표위치까지 남은 시간이 있을 경우
+		// 목적지까지 남은시간만큼의 속도로 이동
+		// 이동거리 = 속력 * 시간
+		// 속력 = (도착지 - 출발지) / 소요시간
+		// 시간 = 프레임단위시간
+		lookAt += (targetPos - lookAt) / timeToTarget * DT;
+	}
 }
