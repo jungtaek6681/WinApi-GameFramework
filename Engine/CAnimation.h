@@ -1,6 +1,7 @@
 #pragma once
 #include "CResource.h"
 
+class CAnimator;
 class CImage;
 
 struct AniFrame
@@ -12,6 +13,7 @@ struct AniFrame
 
 class CAnimation : public CResource
 {
+	friend CAnimator;
 public:
 	CAnimation();
 	virtual ~CAnimation();

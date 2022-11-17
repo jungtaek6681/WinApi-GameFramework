@@ -93,6 +93,9 @@
     <ClInclude Include="CAnimation.h">
       <Filter>Asset\Resource</Filter>
     </ClInclude>
+    <ClInclude Include="CAnimator.h">
+      <Filter>Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -142,6 +145,9 @@
     </ClCompile>
     <ClCompile Include="CAnimation.cpp">
       <Filter>Asset\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimator.cpp">
+      <Filter>Component</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

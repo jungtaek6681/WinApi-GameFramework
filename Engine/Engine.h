@@ -18,6 +18,7 @@
 
 // Component
 #include "CCollider.h"
+#include "CAnimator.h"
 
 // Asset
 #include "CScene.h"

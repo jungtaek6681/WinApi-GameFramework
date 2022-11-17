@@ -31,6 +31,10 @@ public:
 	void		StrectchImage(CImage* pImg, float startX, float startY, float endX, float endY);	// 크기변경이미지 그리기
 	void		TransparentImage(CImage* pImg, float startX, float startY, float endX, float endY,	// 투명이미지 그리기
 								COLORREF transparent = RGB(255, 0, 255));
+	void		FrameImage(CImage* pImg,
+					float dstStartX, float dstStartY, float dstEndX, float dstEndY,
+					float srcStartX, float srcStartY, float srcEndX, float srcEndY,
+					COLORREF transparent = RGB(255, 0, 255));		// 이미지 일부분 그리기
 
 	void		SetPen(PenType type = PenType::Solid, COLORREF color = RGB(0, 0, 0), int width = 1);
 	void		SetBrush(BrushType type = BrushType::Solid, COLORREF color = RGB(255, 255, 255));
