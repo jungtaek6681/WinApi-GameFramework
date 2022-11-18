@@ -6,6 +6,12 @@
 // WinApi img32 라이브러리
 #pragma comment(lib, "MsImg32.lib")
 
+// FMOD 사운드
+#include "FMOD/inc/fmod.hpp"
+#pragma comment(lib, "FMOD/lib/fmod_vc.lib")
+
+using namespace FMOD;
+
 // C++ 표준 라이브러리
 #include <cassert>
 #include <chrono>
