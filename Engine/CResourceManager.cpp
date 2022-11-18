@@ -34,6 +34,31 @@ CImage* CResourceManager::ImageLoad(const wstring& key, const wstring& file)
 	return pImage;
 }
 
+CSound* CResourceManager::SoundFind(const wstring& key)
+{
+	auto iter = sounds.find(key);
+	if (iter == sounds.end())
+		return nullptr;
+	else
+		return iter->second;
+}
+
+CSound* CResourceManager::SoundLoad(const wstring& key, const wstring& file)
+{
+	CSound* pSound = SoundFind(key);
+	if (nullptr != pSound)
+		return pSound;
+
+	wstring filePath = resourceFolder + file;
+	pSound = new CSound;
+	pSound->Load(filePath);
+	pSound->SetKey(key);
+	pSound->SetPath(filePath);
+	sounds.insert(make_pair(key, pSound));
+
+	return pSound;
+}
+
 void CResourceManager::Init()
 {
 }
@@ -45,4 +70,9 @@ void CResourceManager::Release()
 		delete image.second;
 	}
 	images.clear();
+	for (pair<wstring, CSound*> sound : sounds)
+	{
+		delete sound.second;
+	}
+	sounds.clear();
 }

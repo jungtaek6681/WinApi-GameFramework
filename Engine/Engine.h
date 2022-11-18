@@ -27,3 +27,4 @@
 #include "CResource.h"
 #include "CImage.h"
 #include "CAnimation.h"
+#include "CSound.h"

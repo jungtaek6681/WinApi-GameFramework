@@ -8,6 +8,9 @@
 	고유 데이터를 참조하여 사용하기에 불러오는 시간을 줄임
 */
 
+class CImage;
+class CSound;
+
 class CResourceManager : public SingleTon<CResourceManager>
 {
 	friend SingleTon<CResourceManager>;
@@ -26,13 +29,18 @@ public:
 	//CAnimation*		AnimationFind(const wstring& key);
 	//CAnimation*		AnimationLoad(const wstring& key, const wstring file);
 
+	CSound*			SoundFind(const wstring& key);
+	CSound*			SoundLoad(const wstring& key, const wstring& file);
+
 	const wstring&	GetResourceFolder()							{ return resourceFolder; }
 	void			SetResourceFolder(const wstring& folder)	{ this->resourceFolder = folder; }
 
 private:
 	unordered_map<wstring, CImage*>	images;
+	unordered_map<wstring, CSound*>	sounds;
 
 	wstring resourceFolder;
 };
 
 #define LOADIMAGE(key, file)	CResourceManager::GetInstance()->ImageLoad(key, file)
+#define LOADSOUND(key, file)	CResourceManager::GetInstance()->SoundLoad(key, file)
