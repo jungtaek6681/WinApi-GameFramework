@@ -3,6 +3,7 @@
 
 CEventManager::CEventManager()
 {
+	changeSceneEvent = nullptr;
 }
 
 CEventManager::~CEventManager()
@@ -40,9 +41,22 @@ void CEventManager::DeleteObject(CScene* scene, Component<CGameObject>* obj)
 	deleteObjectQueue.push(make_pair(scene, obj));
 }
 
-void CEventManager::ChangeScene(int sceneType)
+void CEventManager::ChangeScene(int sceneType, float delay)
 {
-	changeSceneValue = sceneType;
+	// 씬 전환 이벤트를 자료구조에 보관
+	if (nullptr == changeSceneEvent)
+	{
+		changeSceneEvent = new pair<int, float>(sceneType, delay);
+	}
+	else if (changeSceneEvent->second > delay)
+	{
+		delete changeSceneEvent;
+		changeSceneEvent = new pair<int, float>(sceneType, delay);
+	}
+	else
+	{
+		// 딜레이가 더욱 큰 씬전환 이벤트는 무시
+	}
 }
 
 void CEventManager::ProgressAddGameObject()
@@ -100,10 +114,16 @@ void CEventManager::ProgressDeleteObject()
 
 void CEventManager::ProgressChangeScene()
 {
-	// 씬 전환 이벤트가 있는 경우 씬 전환 진행
-	if (changeSceneValue != -1)
+	if (nullptr == changeSceneEvent)
+		return;
+
+	// 지연실행 이벤트가 잔여시간이 모두 소진되었을 경우 이벤트 진행
+	changeSceneEvent->second -= DT;
+	if (changeSceneEvent->second <= 0)
 	{
-		SINGLE(CSceneManager)->ChangeScene(changeSceneValue);
-		changeSceneValue = -1;
+		int scene = changeSceneEvent->first;
+		delete changeSceneEvent;
+		changeSceneEvent = nullptr;
+		SINGLE(CSceneManager)->ChangeScene(scene);
 	}
 }

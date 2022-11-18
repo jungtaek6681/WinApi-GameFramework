@@ -24,7 +24,8 @@ void CSceneTitle::Update()
 {
 	if (INPUT->ButtonDown(VK_SPACE))
 	{
-		EVENT->ChangeScene(SceneType::Stage01);
+		CAMERA->FadeOut(0.5f);
+		EVENT->ChangeScene(SceneType::Stage01, 0.5f);
 	}
 }
 
@@ -37,7 +38,6 @@ void CSceneTitle::Render()
 
 void CSceneTitle::Exit()
 {
-	CAMERA->FadeOut(0.5f);
 }
 
 void CSceneTitle::Release()
