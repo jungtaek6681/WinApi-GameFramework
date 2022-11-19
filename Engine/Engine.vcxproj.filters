@@ -102,6 +102,9 @@
     <ClInclude Include="CSound.h">
       <Filter>Asset\Resource</Filter>
     </ClInclude>
+    <ClInclude Include="CSoundManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -160,6 +163,9 @@
     </ClCompile>
     <ClCompile Include="CSound.cpp">
       <Filter>Asset\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="CSoundManager.cpp">
+      <Filter>Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

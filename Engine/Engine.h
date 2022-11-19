@@ -13,6 +13,7 @@
 #include "CPathManager.h"
 #include "CResourceManager.h"
 #include "CCameraManager.h"
+#include "CSoundManager.h"
 
 // Interface
 #include "IRender.h"
