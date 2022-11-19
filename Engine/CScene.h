@@ -2,6 +2,7 @@
 class CSceneManager;
 class CEventManager;
 class CGameObject;
+class CUI;
 
 class CScene
 {
@@ -17,6 +18,10 @@ public:
 	void				DeleteAllObject();
 
 	void				AddRenderer(IRender* renderer);
+
+	void				AddUI(CUI* ui);
+	void				DeleteUI(CUI* ui);
+	void				DeleteAllUI();
 
 private:
 	// 순수가상함수 :
@@ -40,6 +45,7 @@ private:
 
 private:
 	list<CGameObject*>						objList;
+	list<CUI*>								uiList;
 	bool									active;
 	priority_queue<pair<float, IRender*>>	renderPQueue;
 };

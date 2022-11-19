@@ -43,6 +43,35 @@ void CScene::AddRenderer(IRender* renderer)
 	renderPQueue.push(make_pair(renderer->zOrder, renderer));
 }
 
+void CScene::AddUI(CUI* ui)
+{
+	uiList.push_back(ui);
+	ui->SetScene(this);
+	ui->ComponentInit();
+	if (active) ui->ComponentOnEnable();
+}
+
+void CScene::DeleteUI(CUI* ui)
+{
+	if (active) ui->ComponentOnDisable();
+	ui->ComponentRelease();
+	ui->SetScene(nullptr);
+	uiList.remove(ui);
+	delete ui;
+}
+
+void CScene::DeleteAllUI()
+{
+	for (CUI* ui : uiList)
+	{
+		if (active) ui->ComponentOnDisable();
+		ui->ComponentRelease();
+		ui->SetScene(nullptr);
+		uiList.remove(ui);
+		delete ui;
+	}
+}
+
 void CScene::SceneInit()
 {
 	Init();
@@ -62,6 +91,10 @@ void CScene::SceneEnter()
 	{
 		obj->ComponentOnEnable();
 	}
+	for (CUI* ui : uiList)
+	{
+		ui->ComponentOnEnable();
+	}
 }
 
 void CScene::SceneUpdate()
@@ -71,6 +104,10 @@ void CScene::SceneUpdate()
 	for (CGameObject* obj : objList)
 	{
 		obj->ComponentUpdate();
+	}
+	for (CUI* ui : uiList)
+	{
+		ui->ComponentUpdate();
 	}
 }
 
@@ -88,6 +125,11 @@ void CScene::SceneRender()
 		top.second->Render();
 	}
 
+	for (CUI* ui : uiList)
+	{
+		ui->ComponentRender();
+	}
+
 	Render();
 }
 
@@ -96,6 +138,10 @@ void CScene::SceneExit()
 	for (CGameObject* obj : objList)
 	{
 		obj->ComponentOnDisable();
+	}
+	for (CUI* ui : uiList)
+	{
+		ui->ComponentOnDisable();
 	}
 	active = false;
 	Exit();
@@ -109,6 +155,12 @@ void CScene::SceneRelease()
 		delete obj;
 	}
 	objList.clear();
+	for (CUI* ui : uiList)
+	{
+		ui->ComponentRelease();
+		delete ui;
+	}
+	uiList.clear();
 
 	Release();
 }

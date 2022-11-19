@@ -1,6 +1,10 @@
 #pragma once
+
+class CScene;
+
 class CUI : Composite<CUI>
 {
+	friend CScene;
 public:
 	CUI();
 	virtual ~CUI();
