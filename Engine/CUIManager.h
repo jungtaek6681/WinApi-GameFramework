@@ -15,6 +15,9 @@ public:
 	void Release();
 
 private:
-	void MouseEvent(CUI* ui);
+	void MouseEvent(CUI* ui, CUI* topChildUI);
+
+	CUI* GetTopUI();
+	CUI* GetTopChildUI(CUI* parentUI);
 };
 
