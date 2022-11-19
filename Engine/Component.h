@@ -111,7 +111,6 @@ public:
 		childList.clear();
 	}
 
-protected:
 	void AddChild(Component<T>* component)
 	{
 		childList.push_back(component);
@@ -129,6 +128,7 @@ protected:
 		delete component;
 	}
 
+protected:
 	void SetReservedDelete() override
 	{
 		this->reservedDelete = true;

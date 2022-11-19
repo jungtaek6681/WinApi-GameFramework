@@ -44,7 +44,7 @@ void CSceneStage01::Init()
 
 	CButton* button1 = new CButton();
 	button1->SetScale(Vec2(100, 50));
-	button1->SetPos(Vec2(400, 100));
+	button1->SetPos(Vec2(100, 100));
 	button1->SetName(TEXT("¹öÆ°1"));
 	button1->SetClickCallback(click1, (DWORD_PTR)button1, 0);
 	AddUI(button1);
@@ -57,9 +57,9 @@ void CSceneStage01::Init()
 
 	CButton* button2 = new CButton();
 	button2->SetScale(Vec2(100, 50));
-	button2->SetPos(Vec2(500, 100));
+	button2->SetPos(Vec2(50, 50));
 	button2->SetClickCallback(click2, (DWORD_PTR)SceneType::Title, 0);
-	AddUI(button2);
+	panel->AddChild(button2);
 }
 
 void CSceneStage01::Enter()
