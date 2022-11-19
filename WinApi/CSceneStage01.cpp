@@ -30,6 +30,11 @@ void CSceneStage01::Init()
 
 	CSoundController* sound = new CSoundController();
 	AddGameObject(sound);
+
+	CPanel* panel = new CPanel();
+	panel->SetScale(Vec2(200, 200));
+	panel->SetPos(Vec2(100, 100));
+	AddUI(panel);
 }
 
 void CSceneStage01::Enter()
@@ -50,10 +55,6 @@ void CSceneStage01::Render()
 {
 	Vec2 startPos = CAMERA->WorldToScreenPoint(Vec2(0, 0));
 	Vec2 endPos = CAMERA->WorldToScreenPoint(Vec2(CGame::WINSIZE.x, CGame::WINSIZE.y));
-
-	RENDER->SetBrush(BrushType::Null);
-	RENDER->Rect(startPos.x, startPos.y, endPos.x, endPos.y);
-	RENDER->SetBrush();
 }
 
 void CSceneStage01::Exit()

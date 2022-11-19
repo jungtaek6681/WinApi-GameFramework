@@ -21,7 +21,7 @@ void CCameraController::Update()
 {
 	if (INPUT->ButtonDown(VK_LBUTTON))
 	{
-		CAMERA->SetTargetPos(INPUT->MouseWorldPos(), 1);
+		//CAMERA->SetTargetPos(INPUT->MouseWorldPos(), 1);
 	}
 
 	Vec2 dir;
