@@ -29,3 +29,4 @@
 #include "CImage.h"
 #include "CAnimation.h"
 #include "CSound.h"
+#include "CUI.h"

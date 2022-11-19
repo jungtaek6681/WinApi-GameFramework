@@ -22,6 +22,9 @@
     <Filter Include="Asset\Resource">
       <UniqueIdentifier>{227bdd21-fccd-46ec-ad10-8b673e7bd5cd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Asset\UI">
+      <UniqueIdentifier>{2e05d9bb-b57a-4585-80b3-f3c7b9f8c5f4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -105,6 +108,9 @@
     <ClInclude Include="CSoundManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
+    <ClInclude Include="CUI.h">
+      <Filter>Asset\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -166,6 +172,9 @@
     </ClCompile>
     <ClCompile Include="CSoundManager.cpp">
       <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CUI.cpp">
+      <Filter>Asset\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
