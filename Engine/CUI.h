@@ -3,7 +3,7 @@
 class CUIManager;
 class CScene;
 
-class CUI : Composite<CUI>
+class CUI : public Composite<CUI>
 {
 	friend CUIManager;
 	friend CScene;
@@ -37,13 +37,21 @@ protected:
 	bool			screenFixed;
 	bool			show;
 
-private:
+protected:
 	void			ComponentInit()			override;
 	void			ComponentOnEnable()		override;
 	void			ComponentUpdate()		override;
 	void			ComponentRender()		override;
 	void			ComponentOnDisable()	override;
 	void			ComponentRelease()		override;
+
+private:
+	virtual void	Init()					= 0;
+	virtual void	OnEnable()				= 0;
+	virtual void	Update()				= 0;
+	virtual void	Render()				= 0;
+	virtual void	OnDisable()				= 0;
+	virtual void	Release()				= 0;
 
 	virtual void	OnMouseEnter()			{}
 	virtual void	OnMouseOver()			{}

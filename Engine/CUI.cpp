@@ -31,11 +31,13 @@ bool CUI::IsMouseOn()
 
 void CUI::ComponentInit()
 {
+	Init();
 	Composite::ComponentInit();
 }
 
 void CUI::ComponentOnEnable()
 {
+	OnEnable();
 	Composite::ComponentOnEnable();
 }
 
@@ -56,6 +58,7 @@ void CUI::ComponentUpdate()
 	else
 		renderPos = SINGLE(CCameraManager)->WorldToScreenPoint(worldPos);
 
+	Update();
 	Composite::ComponentUpdate();
 }
 
@@ -64,15 +67,18 @@ void CUI::ComponentRender()
 	if (IsReservedDelete() || !IsShow())
 		return;
 
+	Render();
 	Composite::ComponentRender();
 }
 
 void CUI::ComponentOnDisable()
 {
 	Composite::ComponentOnDisable();
+	OnDisable();
 }
 
 void CUI::ComponentRelease()
 {
 	Composite::ComponentRelease();
+	Release();
 }
