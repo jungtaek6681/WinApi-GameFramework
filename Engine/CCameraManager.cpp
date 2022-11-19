@@ -7,6 +7,11 @@ CCameraManager::CCameraManager()
 	targetPos		= Vec2(0, 0);
 	targetObj		= nullptr;
 	timeToTarget	= 0;
+
+	fadeImage		= nullptr;
+	targetBright	= 1;
+	curBright		= 1;
+	timeToBright	= 0;
 }
 
 CCameraManager::~CCameraManager()
@@ -15,6 +20,9 @@ CCameraManager::~CCameraManager()
 
 void CCameraManager::Init()
 {
+	fadeImage = new CImage();
+	fadeImage->Create((UINT)SINGLE(CEngine)->GetWinSize().x, (UINT)SINGLE(CEngine)->GetWinSize().y);
+	PatBlt(fadeImage->GetImageDC(), 0, 0, fadeImage->GetBmpWidth(), fadeImage->GetBmpHeight(), BLACKNESS);
 }
 
 void CCameraManager::Update()
@@ -35,10 +43,29 @@ void CCameraManager::Update()
 	}
 
 	MoveToTarget();
+	BrightToTarget();
+}
+
+void CCameraManager::Render()
+{
+	if (curBright >= 1)
+		return;
+
+	RENDER->BlendImage(
+		fadeImage,
+		0, 0,
+		SINGLE(CEngine)->GetWinSize().x,
+		SINGLE(CEngine)->GetWinSize().y,
+		0, 0,
+		(float)(fadeImage->GetBmpWidth()),
+		(float)(fadeImage->GetBmpHeight()),
+		(1 - curBright)
+	);
 }
 
 void CCameraManager::Release()
 {
+	delete fadeImage;
 }
 
 Vec2 CCameraManager::WorldToScreenPoint(Vec2 worldPoint)
@@ -63,6 +90,18 @@ void CCameraManager::Scroll(Vec2 dir, float velocity)
 	targetPos = lookAt;
 	targetPos += dir.Normalized() * velocity * DT;
 	timeToTarget = 0;	// 스크롤은 시간차를 두지 않은 즉각 이동
+}
+
+void CCameraManager::FadeIn(float duration)
+{
+	targetBright = 1;
+	timeToBright = duration;
+}
+
+void CCameraManager::FadeOut(float duration)
+{
+	targetBright = 0;
+	timeToBright = duration;
 }
 
 void CCameraManager::SetTargetPos(const Vec2& targetPos, float timeToTarget)
@@ -93,5 +132,27 @@ void CCameraManager::MoveToTarget()
 		// 속력 = (도착지 - 출발지) / 소요시간
 		// 시간 = 프레임단위시간
 		lookAt += (targetPos - lookAt) / timeToTarget * DT;
+	}
+}
+
+void CCameraManager::BrightToTarget()
+{
+	timeToBright -= DT;
+
+	if (timeToBright <= 0)
+	{
+		// 목표위치까지 남은 시간이 없을 경우 목적지로 현재위치 고정
+		curBright = targetBright;
+	}
+	else
+	{
+		// 목표위치까지 남은 시간이 있을 경우
+		// 목적지까지 남은시간만큼의 속도로 이동
+		// 이동거리 = 속력 * 시간
+		// 속력 = (도착지 - 출발지) / 소요시간
+		// 시간 = 프레임단위시간
+		curBright += (targetBright - curBright) / timeToBright * DT;
+		if		(curBright > 1) curBright = 1;
+		else if (curBright < 0) curBright = 0;
 	}
 }

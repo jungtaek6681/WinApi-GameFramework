@@ -17,6 +17,7 @@ void CSceneTitle::Init()
 
 void CSceneTitle::Enter()
 {
+	CAMERA->FadeIn(0.5f);
 }
 
 void CSceneTitle::Update()
@@ -36,6 +37,7 @@ void CSceneTitle::Render()
 
 void CSceneTitle::Exit()
 {
+	CAMERA->FadeOut(0.5f);
 }
 
 void CSceneTitle::Release()

@@ -30,6 +30,7 @@ void CSceneStage01::Init()
 
 void CSceneStage01::Enter()
 {
+	CAMERA->FadeIn(0.5f);
 }
 
 void CSceneStage01::Update()
@@ -52,6 +53,7 @@ void CSceneStage01::Render()
 
 void CSceneStage01::Exit()
 {
+	CAMERA->FadeOut(0.5f);
 }
 
 void CSceneStage01::Release()

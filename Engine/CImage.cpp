@@ -30,3 +30,14 @@ void CImage::Load(const wstring path)
 	SelectObject(hDC, hBmp);					// 비트맵이미지와 DC 연결
 	GetObject(hBmp, sizeof(BITMAP), &bmpInfo);	// 비트맵이미지 정보 추출
 }
+
+void CImage::Create(UINT sizeX, UINT sizeY)
+{
+	hBmp = CreateCompatibleBitmap(MAINDC, sizeX, sizeY);
+	hDC = CreateCompatibleDC(MAINDC);
+
+	HBITMAP hOldBmp = (HBITMAP)SelectObject(hDC, hBmp);
+	DeleteObject(hOldBmp);
+
+	GetObject(hBmp, sizeof(BITMAP), &bmpInfo);
+}

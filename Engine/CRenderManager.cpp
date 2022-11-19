@@ -168,6 +168,18 @@ void CRenderManager::FrameImage(CImage* pImg, float dstStartX, float dstStartY, 
 		pImg->GetImageDC(), (int)srcStartX, (int)srcStartY, (int)(srcEndX - srcStartX), (int)(srcEndY - srcStartY), transparent);
 }
 
+void CRenderManager::BlendImage(CImage* pImg, float dstStartX, float dstStartY, float dstEndX, float dstEndY, float srcStartX, float srcStartY, float srcEndX, float srcEndY, float ratio)
+{
+	BLENDFUNCTION bf = {};
+	bf.BlendOp = AC_SRC_OVER;
+	bf.BlendFlags = 0;
+	bf.AlphaFormat = 0;
+	bf.SourceConstantAlpha = (BYTE)(ratio * 255);
+
+	AlphaBlend(hMemDC, (int)dstStartX, (int)dstStartY, (int)(dstEndX - dstStartX), (int)(dstEndY - dstStartY),
+		pImg->GetImageDC(), (int)srcStartX, (int)srcStartY, (int)(srcEndX - srcStartX), (int)(srcEndY - srcStartY), bf);
+}
+
 void CRenderManager::SetPen(PenType type, COLORREF color, int width)
 {
 	// 선택하는 펜이 현재 펜과 동일할 경우 새로 만들지 않음

@@ -8,6 +8,7 @@ public:
 
 public:
 	void	Load(const wstring path);
+	void	Create(UINT sizeX, UINT sizeY);
 
 	HDC		GetImageDC()	{ return hDC; }
 	BITMAP	GetBmpInfo()	{ return bmpInfo; }
