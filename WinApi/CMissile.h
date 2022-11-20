@@ -1,9 +1,9 @@
 #pragma once
-class CPlayer : public CGameObject
+class CMissile : public CGameObject
 {
 public:
-	CPlayer();
-	virtual ~CPlayer();
+	CMissile();
+	virtual ~CMissile();
 
 private:
 	void	Init()			override;
@@ -14,8 +14,6 @@ private:
 	void	Release()		override;
 
 private:
-	void	CreateMissile();
-
+	Vec2	dir;
 	float	speed;
 };
-

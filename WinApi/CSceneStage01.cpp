@@ -25,7 +25,7 @@ void CSceneStage01::Enter()
 
 void CSceneStage01::Update()
 {
-	if (BUTTONDOWN(VK_ESCAPE))
+	if (INPUT->ButtonDown(VK_ESCAPE))
 	{
 		SINGLE(CSceneManager)->ChangeScene(SceneType::Title);
 	}

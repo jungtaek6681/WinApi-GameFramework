@@ -49,6 +49,9 @@
     <ClInclude Include="CPlayer.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="CMissile.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinApi.cpp">
@@ -67,6 +70,9 @@
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="CPlayer.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="CMissile.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>

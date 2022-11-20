@@ -160,6 +160,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CGame.h" />
+    <ClInclude Include="CMissile.h" />
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CSceneStage01.h" />
     <ClInclude Include="CSceneTitle.h" />
@@ -172,6 +173,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CGame.cpp" />
+    <ClCompile Include="CMissile.cpp" />
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CSceneStage01.cpp" />
     <ClCompile Include="CSceneTitle.cpp" />

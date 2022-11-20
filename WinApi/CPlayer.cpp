@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "CPlayer.h"
 
+#include "CMissile.h"
+
 CPlayer::CPlayer()
 {
 	name	= TEXT("플레이어");
@@ -22,24 +24,29 @@ void CPlayer::OnEnable()
 
 void CPlayer::Update()
 {
-	if (BUTTONSTAY(VK_LEFT))
+	if (INPUT->ButtonStay(VK_LEFT))
 	{
 		pos.x -= speed * DT;
 	}
 
-	if (BUTTONSTAY(VK_RIGHT))
+	if (INPUT->ButtonStay(VK_RIGHT))
 	{
 		pos.x += speed * DT;
 	}
 
-	if (BUTTONSTAY(VK_UP))
+	if (INPUT->ButtonStay(VK_UP))
 	{
 		pos.y -= speed * DT;
 	}
 
-	if (BUTTONSTAY(VK_DOWN))
+	if (INPUT->ButtonStay(VK_DOWN))
 	{
 		pos.y += speed * DT;
+	}
+
+	if (INPUT->ButtonDown(VK_SPACE))
+	{
+		CreateMissile();
 	}
 }
 
@@ -58,4 +65,11 @@ void CPlayer::OnDisable()
 
 void CPlayer::Release()
 {
+}
+
+void CPlayer::CreateMissile()
+{
+	CMissile* missile = new CMissile();
+	missile->SetPos(pos);
+	EVENT->AddGameObject(GetScene(), missile);
 }

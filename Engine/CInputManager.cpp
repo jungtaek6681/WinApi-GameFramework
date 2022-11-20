@@ -57,25 +57,25 @@ void CInputManager::Release()
 {
 }
 
-bool CInputManager::GetButtonStay(const int key)
+bool CInputManager::ButtonStay(const int key)
 {
 	// 키가 눌리고 있는 중
 	return prevKeys[key] == true && curKeys[key] == true;
 }
 
-bool CInputManager::GetButtonUp(const int key)
+bool CInputManager::ButtonUp(const int key)
 {
 	// 키가 올라간 순간
 	return prevKeys[key] == true && curKeys[key] == false;
 }
 
-bool CInputManager::GetButtonDown(const int key)
+bool CInputManager::ButtonDown(const int key)
 {
 	// 키가 내려간 순간
 	return prevKeys[key] == false && curKeys[key] == true;
 }
 
-Vec2 CInputManager::GetMousePos()
+Vec2 CInputManager::MousePos()
 {
 	return Vec2((float)mousePos.x, (float)mousePos.y);
 }
