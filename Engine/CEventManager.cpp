@@ -19,6 +19,12 @@ void CEventManager::Update()
 	ProgressAddGameObject();
 	ProgressDeleteObject();
 	ProgressAddComponent();
+
+	ProgressAddUI();
+	ProgressAddChildUI();
+	ProgressDeleteUI();
+	ProgressShowUI();
+
 	ProgressChangeScene();
 }
 
@@ -36,9 +42,29 @@ void CEventManager::AddChild(CGameObject* parent, Component<CGameObject>* child)
 	addChildQueue.push(make_pair(parent, child));
 }
 
-void CEventManager::DeleteObject(CScene* scene, Component<CGameObject>* obj)
+void CEventManager::Delete(CScene* scene, Component<CGameObject>* obj)
 {
 	deleteObjectQueue.push(make_pair(scene, obj));
+}
+
+void CEventManager::AddUI(CScene* scene, CUI* ui)
+{
+	addUIQueue.push(make_pair(scene, ui));
+}
+
+void CEventManager::AddChild(CUI* parent, CUI* child)
+{
+	addChildUIQueue.push(make_pair(parent, child));
+}
+
+void CEventManager::Delete(CScene* scene, CUI* ui)
+{
+	deleteUIQueue.push(make_pair(scene, ui));
+}
+
+void CEventManager::ShowUI(CUI* ui, bool show)
+{
+	showUIQueue.push(make_pair(ui, show));
 }
 
 void CEventManager::ChangeScene(int sceneType, float delay)
@@ -109,6 +135,70 @@ void CEventManager::ProgressDeleteObject()
 		Component<CGameObject>* component = deleteObjectQueue.front().second;
 		deleteObjectQueue.pop();
 		component->SetReservedDelete();
+	}
+}
+
+void CEventManager::ProgressAddUI()
+{
+	while (!addUIQueue.empty())
+	{
+		CScene* scene = addUIQueue.front().first;
+		CUI* ui = addUIQueue.front().second;
+		addUIQueue.pop();
+		scene->AddUI(ui);
+	}
+}
+
+void CEventManager::ProgressAddChildUI()
+{
+	while (!addChildUIQueue.empty())
+	{
+		CUI* parent = addChildUIQueue.front().first;
+		CUI* child = addChildUIQueue.front().second;
+		addChildUIQueue.pop();
+		parent->AddChild(child);
+	}
+}
+
+void CEventManager::ProgressDeleteUI()
+{
+	// 삭제 예정 표시된 UI를 삭제 진행
+	CScene* curScene = SINGLE(CSceneManager)->GetCurScene();
+	list<CUI*>& uiList = curScene->uiList;
+
+	uiList.remove_if([&](CUI* ui) {
+		if (ui->IsReservedDelete())
+		{
+			if (curScene->active) ui->ComponentOnDisable();
+			ui->ComponentRelease();
+			ui->SetScene(nullptr);
+			delete ui;
+			return true;
+		}
+		else
+		{
+			ui->DeleteReservedChild();
+			return false;
+		}
+		});
+
+	// 삭제 예정인 게임오브젝트에 삭제예정 표시를 진행
+	while (!deleteUIQueue.empty())
+	{
+		CUI* child = deleteUIQueue.front().second;
+		deleteUIQueue.pop();
+		child->SetReservedDelete();
+	}
+}
+
+void CEventManager::ProgressShowUI()
+{
+	while (!showUIQueue.empty())
+	{
+		CUI* ui = showUIQueue.front().first;
+		bool show = showUIQueue.front().second;
+		showUIQueue.pop();
+		ui->SetShow(show);
 	}
 }
 
