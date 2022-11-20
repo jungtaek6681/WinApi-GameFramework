@@ -3,7 +3,8 @@
 
 CMonster::CMonster()
 {
-	scale = Vec2(100, 100);
+	name	= TEXT("∏ÛΩ∫≈Õ");
+	scale	= Vec2(100, 100);
 }
 
 CMonster::~CMonster()

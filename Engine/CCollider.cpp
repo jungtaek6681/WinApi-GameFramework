@@ -71,5 +71,5 @@ void CCollider::ComponentRelease()
 
 void CCollider::OnCollisionStay(CCollider* other)
 {
-	Logger::Debug(TEXT("Ãæµ¹ Áß"));
+	GetOwner()->OnCollisionStay(other);
 }

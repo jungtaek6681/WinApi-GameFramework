@@ -6,6 +6,7 @@ class CGameObject : public Composite<CGameObject>, public IRender
 {
 	friend CEventManager;
 	friend CScene;
+	friend CCollider;
 public:
 	CGameObject();
 	virtual ~CGameObject();
@@ -41,5 +42,7 @@ private:
 	void			ComponentRender()		override;
 	void			ComponentOnDisable()	override;
 	void			ComponentRelease()		override;
+
+	virtual void	OnCollisionStay(CCollider* other) {};	
 };
 

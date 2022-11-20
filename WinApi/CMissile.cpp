@@ -52,3 +52,9 @@ void CMissile::OnDisable()
 void CMissile::Release()
 {
 }
+
+void CMissile::OnCollisionStay(CCollider* other)
+{
+	if (!IsReservedDelete())
+		EVENT->DeleteObject(GetScene(), this);
+}
