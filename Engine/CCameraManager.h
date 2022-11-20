@@ -14,6 +14,8 @@ public:
 	Vec2				WorldToScreenPoint(Vec2 worldPoint);	// 게임위치->화면위치
 	Vec2				ScreenToWorldPoint(Vec2 screenPoint);	// 화면위치->게임위치
 
+	void				Scroll(Vec2 dir, float velocity);
+
 	void				SetTargetPos(const Vec2& targetPos, float timeToTarget = 0);
 	void				SetTargetObj(CGameObject* targetObj);
 

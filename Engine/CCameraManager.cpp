@@ -53,6 +53,18 @@ Vec2 CCameraManager::ScreenToWorldPoint(Vec2 screenPoint)
 	return screenPoint + (lookAt - center);
 }
 
+void CCameraManager::Scroll(Vec2 dir, float velocity)
+{
+	// 스크롤의 방향 크기가 없는 경우 진행하지 않음
+	if (dir.Magnitude() == 0)
+		return;
+
+	// 스크롤의 목표 위치는 현재위치에서 스크롤 방향으로 떨어진 위치
+	targetPos = lookAt;
+	targetPos += dir.Normalized() * velocity * DT;
+	timeToTarget = 0;	// 스크롤은 시간차를 두지 않은 즉각 이동
+}
+
 void CCameraManager::SetTargetPos(const Vec2& targetPos, float timeToTarget)
 {
 	this->targetPos = targetPos;
