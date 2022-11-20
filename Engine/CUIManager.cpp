@@ -19,7 +19,7 @@ void CUIManager::Update()
 	CUI* topUI = GetTopUI();
 	CUI* topChildUI = GetTopChildUI(topUI);
 
-	if (INPUT->ButtonDown(VK_LBUTTON))
+	if (INPUT->ButtonDown(VK_LBUTTON, true))
 		SetFocusedUI(topUI);
 
 	CScene* pCurScene = SINGLE(CSceneManager)->GetCurScene();
@@ -72,12 +72,12 @@ void CUIManager::MouseEvent(CUI* ui, CUI* topChildUI)
 		}
 		ui->prevMouseOn = true;
 		ui->OnMouseOver();
-		if (INPUT->ButtonDown(VK_LBUTTON))
+		if (INPUT->ButtonDown(VK_LBUTTON, true))
 		{
 			ui->OnMouseDown();
 			ui->prevDown = true;
 		}
-		else if (INPUT->ButtonUp(VK_LBUTTON))
+		else if (INPUT->ButtonUp(VK_LBUTTON, true))
 		{
 			ui->OnMouseUp();
 
@@ -95,7 +95,7 @@ void CUIManager::MouseEvent(CUI* ui, CUI* topChildUI)
 			ui->OnMouseExit();		
 		}
 		ui->prevMouseOn = false;
-		if (INPUT->ButtonUp(VK_LBUTTON))
+		if (INPUT->ButtonUp(VK_LBUTTON, true))
 		{
 			ui->prevDown = false;
 		}
@@ -119,7 +119,7 @@ CUI* CUIManager::GetTopUI()
 	{
 		// 역순으로 순회 중 가장먼저 마우스가 올려져 있는 UI가 마우스 클릭의 대상
 		CUI* pUI = static_cast<CUI*>(*iter);
-		if (pUI->IsMouseOn())
+		if (pUI->IsMouseOn() && pUI->IsShow())
 		{
 			return pUI;
 		}
