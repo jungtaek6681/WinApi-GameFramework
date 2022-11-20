@@ -69,6 +69,7 @@ void CGame::Init(HINSTANCE hInstance)
 	SINGLE(CResourceManager)->Init();
 	SINGLE(CCameraManager)->Init();
 	SINGLE(CSoundManager)->Init();
+	SINGLE(CUIManager)->Init();
 
 	// TODO : 리소스 경로 설정
 	SINGLE(CResourceManager)->SetResourceFolder(PATH + TEXT("\\..\\Resource\\"));
@@ -110,6 +111,7 @@ void CGame::Release()
 	SINGLE(CResourceManager)->Release();
 	SINGLE(CCameraManager)->Release();
 	SINGLE(CSoundManager)->Release();
+	SINGLE(CUIManager)->Release();
 }
 
 void CGame::Input()
@@ -129,6 +131,7 @@ void CGame::Update()
 	SINGLE(CSceneManager)->Update();
 	SINGLE(CCameraManager)->Update();
 	SINGLE(CSoundManager)->Update();
+	SINGLE(CUIManager)->Update();
 
 	// 순서 주의! : 충돌 매니저는 업데이트 가장 마지막에 진행
 	// 씬에서 움직인 결과위치를 기준으로 충돌판정을 진행하기 위해

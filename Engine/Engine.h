@@ -14,6 +14,7 @@
 #include "CResourceManager.h"
 #include "CCameraManager.h"
 #include "CSoundManager.h"
+#include "CUIManager.h"
 
 // Interface
 #include "IRender.h"

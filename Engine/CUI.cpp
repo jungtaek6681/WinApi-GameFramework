@@ -16,6 +16,19 @@ CUI::~CUI()
 {
 }
 
+bool CUI::IsMouseOn()
+{
+	if (renderPos.x <= INPUT->MouseScreenPos().x && INPUT->MouseScreenPos().x <= renderPos.x + scale.x &&
+		renderPos.y <= INPUT->MouseScreenPos().y && INPUT->MouseScreenPos().y <= renderPos.y + scale.y)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 void CUI::ComponentInit()
 {
 	Composite::ComponentInit();

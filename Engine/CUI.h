@@ -1,9 +1,11 @@
 #pragma once
 
+class CUIManager;
 class CScene;
 
 class CUI : Composite<CUI>
 {
+	friend CUIManager;
 	friend CScene;
 public:
 	CUI();
@@ -25,6 +27,8 @@ public:
 	void			SetShow(bool show)				{ this->show = show; }
 
 protected:
+	bool			IsMouseOn();
+
 	wstring			name;
 	Vec2			pos;
 	Vec2			worldPos;
@@ -40,5 +44,15 @@ private:
 	void			ComponentRender()		override;
 	void			ComponentOnDisable()	override;
 	void			ComponentRelease()		override;
+
+	virtual void	OnMouseEnter()			{}
+	virtual void	OnMouseOver()			{}
+	virtual void	OnMouseExit()			{}
+	virtual void	OnMouseUp()				{}
+	virtual void	OnMouseDown()			{}
+	virtual void	OnMouseClicked()		{}
+
+	bool			prevMouseOn;			// UI가 이전 프레임에 마우스가 올려진 여부
+	bool			prevDown;				// UI가 이전 프레임에 눌렸는지 여부
 };
 

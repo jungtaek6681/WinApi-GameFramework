@@ -1,6 +1,7 @@
 #pragma once
 class CSceneManager;
 class CEventManager;
+class CUIManager;
 class CGameObject;
 class CUI;
 
@@ -8,6 +9,7 @@ class CScene
 {
 	friend CEventManager;
 	friend CSceneManager;
+	friend CUIManager;
 public:
 	CScene();
 	virtual ~CScene();

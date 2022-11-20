@@ -111,6 +111,9 @@
     <ClInclude Include="CUI.h">
       <Filter>Asset\UI</Filter>
     </ClInclude>
+    <ClInclude Include="CUIManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -175,6 +178,9 @@
     </ClCompile>
     <ClCompile Include="CUI.cpp">
       <Filter>Asset\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CUIManager.cpp">
+      <Filter>Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
