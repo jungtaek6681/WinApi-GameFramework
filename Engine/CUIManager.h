@@ -14,10 +14,16 @@ public:
 	void Update();
 	void Release();
 
+	CUI* GetFocusedUI();
+	void SetFocusedUI(CUI* ui);
+
 private:
 	void MouseEvent(CUI* ui, CUI* topChildUI);
 
 	CUI* GetTopUI();
 	CUI* GetTopChildUI(CUI* parentUI);
+
+private:
+	CUI* focusedUI;
 };
 

@@ -3,6 +3,7 @@
 
 CUIManager::CUIManager()
 {
+	focusedUI = nullptr;
 }
 
 CUIManager::~CUIManager()
@@ -18,6 +19,9 @@ void CUIManager::Update()
 	CUI* topUI = GetTopUI();
 	CUI* topChildUI = GetTopChildUI(topUI);
 
+	if (INPUT->ButtonDown(VK_LBUTTON))
+		SetFocusedUI(topUI);
+
 	CScene* pCurScene = SINGLE(CSceneManager)->GetCurScene();
 	const list<CUI*>& uiList = pCurScene->uiList;
 	for (CUI* ui : uiList)
@@ -28,6 +32,34 @@ void CUIManager::Update()
 
 void CUIManager::Release()
 {
+}
+
+CUI* CUIManager::GetFocusedUI()
+{
+	return focusedUI;
+}
+
+void CUIManager::SetFocusedUI(CUI* ui)
+{
+	// 이미 포커싱된 UI일 경우 진행하지 않음
+	if (focusedUI == ui)
+		return;
+
+	// 포커싱을 nullptr로 지정할 경우 포커싱 UI 를 nullptr로 설정
+	if (nullptr == ui)
+	{
+		focusedUI = nullptr;
+		return;
+	}
+
+	focusedUI = ui;
+
+	// 포커싱된 UI를 최상단에 배치하도록 자료구조의 가장 뒤에 배치
+	CScene* curScene = SINGLE(CSceneManager)->GetCurScene();
+	list<CUI*>& listUI = curScene->uiList;
+
+	listUI.remove(focusedUI);
+	listUI.push_back(focusedUI);
 }
 
 void CUIManager::MouseEvent(CUI* ui, CUI* topChildUI)
