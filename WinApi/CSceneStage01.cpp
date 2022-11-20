@@ -5,6 +5,7 @@
 #include "CPlayer.h"
 #include "CMonster.h"
 #include "CCameraController.h"
+#include "CSoundController.h"
 
 CSceneStage01::CSceneStage01()
 {
@@ -26,6 +27,9 @@ void CSceneStage01::Init()
 
 	CCameraController* controller = new CCameraController();
 	AddGameObject(controller);
+
+	CSoundController* sound = new CSoundController();
+	AddGameObject(sound);
 }
 
 void CSceneStage01::Enter()

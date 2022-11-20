@@ -61,6 +61,9 @@
     <ClInclude Include="CCameraController.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="CSoundController.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinApi.cpp">
@@ -91,6 +94,9 @@
       <Filter>GameObject</Filter>
     </ClCompile>
     <ClCompile Include="CCameraController.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="CSoundController.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>

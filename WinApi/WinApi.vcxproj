@@ -166,6 +166,7 @@
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CSceneStage01.h" />
     <ClInclude Include="CSceneTitle.h" />
+    <ClInclude Include="CSoundController.h" />
     <ClInclude Include="CWeapon.h" />
     <ClInclude Include="Enum.h" />
     <ClInclude Include="framework.h" />
@@ -182,6 +183,7 @@
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CSceneStage01.cpp" />
     <ClCompile Include="CSceneTitle.cpp" />
+    <ClCompile Include="CSoundController.cpp" />
     <ClCompile Include="CWeapon.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
