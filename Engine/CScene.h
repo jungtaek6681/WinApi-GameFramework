@@ -1,9 +1,11 @@
 #pragma once
 class CSceneManager;
+class CEventManager;
 class CGameObject;
 
 class CScene
 {
+	friend CEventManager;
 	friend CSceneManager;
 public:
 	CScene();

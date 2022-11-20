@@ -1,8 +1,10 @@
 #pragma once
+class CEventManager;
 class CScene;
 
 class CGameObject
 {
+	friend CEventManager;
 	friend CScene;
 public:
 	CGameObject();
@@ -19,6 +21,8 @@ public:
 	void			SetPos(const Vec2& pos)			{ this->pos = pos; }
 	void			SetScale(const Vec2& scale)		{ this->scale = scale; }
 
+	bool			IsReservedDelete()				{ return reservedDelete; }
+
 protected:
 	CScene*			scene;
 	wstring			name;
@@ -32,5 +36,9 @@ private:
 	virtual void	Render()	= 0;
 	virtual void	OnDisable()	= 0;
 	virtual void	Release()	= 0;
+
+	void			SetReservedDelete()		{ reservedDelete = true; }	// 게임오브젝트 삭제 예약
+
+	bool			reservedDelete;										// 게임오브젝트가 삭제예정인지 여부
 };
 

@@ -6,6 +6,8 @@ CGameObject::CGameObject()
 	name	= TEXT("");
 	pos		= Vec2(0, 0);
 	scale	= Vec2(0, 0);
+
+	reservedDelete = false;
 }
 
 CGameObject::~CGameObject()

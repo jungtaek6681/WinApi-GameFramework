@@ -15,13 +15,16 @@ public:
 	void Update();
 	void Release();
 
-	void AddGameObject(CScene* scene, CGameObject* obj);		// 게임오브젝트 추가 이벤트
+	void AddGameObject(CScene* scene, CGameObject* obj);			// 게임오브젝트 추가 이벤트 추가
+	void DeleteGameObject(CScene* scene, CGameObject* obj);			// 게임오브젝트 삭제 이벤트 추가
 
 private:
-	void ProgressAddGameObject();								// 게임오브젝트 추가 진행
+	void ProgressAddGameObject();									// 게임오브젝트 추가 이벤트 진행
+	void ProgressDeleteGameObject();								// 게임오브젝트 삭제 이벤트 진행
 
 private:
-	queue<pair<CScene*, CGameObject*>> addGameObjectQueue;		// 게임오브젝트 추가 이벤트 보관
+	queue<pair<CScene*, CGameObject*>>	addGameObjectQueue;			// 게임오브젝트 추가 이벤트 보관
+	queue<pair<CScene*, CGameObject*>>	deleteGameObjectQueue;		// 게임오브젝트 삭제 이벤트 보관
 };
 
 #define EVENT		CEventManager::GetInstance()

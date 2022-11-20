@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "CMissile.h"
 
+#include "CGame.h"
+
 CMissile::CMissile()
 {
 	name = TEXT("πÃªÁ¿œ");
@@ -24,6 +26,10 @@ void CMissile::OnEnable()
 void CMissile::Update()
 {
 	pos += dir * speed * DT;
+
+	if (pos.x < 100 || pos.x > CGame::WINSIZE.x ||
+		pos.y < 100 || pos.y > CGame::WINSIZE.y)
+		EVENT->DeleteGameObject(GetScene(), this);
 }
 
 void CMissile::Render()
