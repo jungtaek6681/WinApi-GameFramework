@@ -31,10 +31,10 @@ void CSceneStage01::Init()
 	CSoundController* sound = new CSoundController();
 	AddGameObject(sound);
 
-	CPanel* panel = new CPanel();
-	panel->SetScale(Vec2(200, 200));
-	panel->SetPos(Vec2(100, 100));
-	AddUI(panel);
+	CPanel* panel1 = new CPanel();
+	panel1->SetScale(Vec2(200, 200));
+	panel1->SetPos(Vec2(100, 100));
+	AddUI(panel1);
 
 	auto click1 = [](DWORD_PTR button1, DWORD_PTR param2) {
 		CButton* button = (CButton*)button1;
@@ -44,10 +44,15 @@ void CSceneStage01::Init()
 
 	CButton* button1 = new CButton();
 	button1->SetScale(Vec2(100, 50));
-	button1->SetPos(Vec2(100, 100));
+	button1->SetPos(Vec2(50, 50));
 	button1->SetName(TEXT("¹öÆ°1"));
 	button1->SetClickCallback(click1, (DWORD_PTR)button1, 0);
-	AddUI(button1);
+	panel1->AddChild(button1);
+
+	CPanel* panel2 = new CPanel();
+	panel2->SetScale(Vec2(200, 200));
+	panel2->SetPos(Vec2(300, 100));
+	AddUI(panel2);
 
 	auto click2 = [](DWORD_PTR sceneType, DWORD_PTR param2) {
 		SceneType type = (SceneType)sceneType;
@@ -59,7 +64,7 @@ void CSceneStage01::Init()
 	button2->SetScale(Vec2(100, 50));
 	button2->SetPos(Vec2(50, 50));
 	button2->SetClickCallback(click2, (DWORD_PTR)SceneType::Title, 0);
-	panel->AddChild(button2);
+	panel2->AddChild(button2);
 }
 
 void CSceneStage01::Enter()
