@@ -1,6 +1,10 @@
 #pragma once
+
+class CCollisionManager;
+
 class CCollider : public Component<CGameObject>, public IRender
 {
+	friend CCollisionManager;
 public:
 	CCollider();
 	virtual ~CCollider();
@@ -17,6 +21,8 @@ public:
 	void			SetScale(const Vec2 scale)		{ this->scale = scale; }
 
 private:
+	virtual	bool	IsCollision(CCollider* other);
+
 	void			Render()						override;
 
 	void			ComponentInit()					override;

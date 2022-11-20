@@ -14,6 +14,16 @@ CCollider::~CCollider()
 {
 }
 
+bool CCollider::IsCollision(CCollider* other)
+{
+	// 사각 충돌
+	if (abs(GetPos().x - other->GetPos().x) < (GetScale().x + other->GetScale().x) * 0.5f &&
+		abs(GetPos().y - other->GetPos().y) < (GetScale().y + other->GetScale().y) * 0.5f)
+		return true;
+	else
+		return false;
+}
+
 void CCollider::Render()
 {
 	RENDER->SetPen(PenType::Solid, RGB(0, 255, 0));

@@ -22,7 +22,7 @@ void CCollisionManager::Update()
 		{
 			if (layerMask[left][right])
 			{
-				// 충돌 판정 진행
+				CollisionUpdate(left, right);
 			}
 		}
 	}
@@ -59,3 +59,24 @@ void CCollisionManager::ResetCheck()
 	for (UINT i = 0; i < layerMask.size(); i++)
 		layerMask[i].fill(false);
 }
+
+void CCollisionManager::CollisionUpdate(UINT left, UINT right)
+{
+	for (CCollider* leftCollider : colliderList[left])
+	{
+		for (CCollider* rightCollider : colliderList[right])
+		{
+			// 자기 자신과의 충돌을 무시
+			if (leftCollider == rightCollider)
+				continue;
+
+			// 충돌처리 확인
+			if (leftCollider->IsCollision(rightCollider))
+			{
+				leftCollider->OnCollisionStay(rightCollider);
+				rightCollider->OnCollisionStay(leftCollider);
+			}
+		}
+	}
+}
+

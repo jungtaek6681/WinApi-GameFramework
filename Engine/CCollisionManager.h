@@ -25,6 +25,8 @@ public:
 	void ResetCheck();
 
 private:
+	void CollisionUpdate(UINT left, UINT right);
+
 	array<list<CCollider*>, MAXLAYER>		colliderList;
 	array<array<bool, MAXLAYER>, MAXLAYER>	layerMask;
 };
