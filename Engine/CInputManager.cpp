@@ -57,20 +57,29 @@ void CInputManager::Release()
 {
 }
 
-bool CInputManager::ButtonStay(const int key)
+bool CInputManager::ButtonStay(const int key, bool ignoreUI)
 {
+	if (SINGLE(CUIManager)->GetFocusedUI() != nullptr && !ignoreUI)
+		return false;
+
 	// 키가 눌리고 있는 중
 	return prevKeys[key] == true && curKeys[key] == true;
 }
 
-bool CInputManager::ButtonUp(const int key)
+bool CInputManager::ButtonUp(const int key, bool ignoreUI)
 {
+	if (SINGLE(CUIManager)->GetFocusedUI() != nullptr && !ignoreUI)
+		return false;
+
 	// 키가 올라간 순간
 	return prevKeys[key] == true && curKeys[key] == false;
 }
 
-bool CInputManager::ButtonDown(const int key)
+bool CInputManager::ButtonDown(const int key, bool ignoreUI)
 {
+	if (SINGLE(CUIManager)->GetFocusedUI() != nullptr && !ignoreUI)
+		return false;
+
 	// 키가 내려간 순간
 	return prevKeys[key] == false && curKeys[key] == true;
 }
