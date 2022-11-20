@@ -54,16 +54,15 @@ void CSceneStage01::Init()
 	panel2->SetPos(Vec2(300, 100));
 	AddUI(panel2);
 
-	auto click2 = [](DWORD_PTR sceneType, DWORD_PTR param2) {
-		SceneType type = (SceneType)sceneType;
-		CAMERA->FadeOut(0.5f);
-		EVENT->ChangeScene(type, 0.5f);
+	auto click2 = [](DWORD_PTR panel1, DWORD_PTR param2) {
+		CPanel* panel = (CPanel*)panel1;
+		EVENT->ShowUI(panel, !panel->IsShow());
 	};
 
 	CButton* button2 = new CButton();
 	button2->SetScale(Vec2(100, 50));
 	button2->SetPos(Vec2(50, 50));
-	button2->SetClickCallback(click2, (DWORD_PTR)SceneType::Title, 0);
+	button2->SetClickCallback(click2, (DWORD_PTR)panel1, 0);
 	panel2->AddChild(button2);
 }
 
