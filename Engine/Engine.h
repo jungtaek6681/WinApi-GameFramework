@@ -32,3 +32,4 @@
 #include "CSound.h"
 #include "CUI.h"
 #include "CPanel.h"
+#include "CButton.h"

@@ -117,6 +117,9 @@
     <ClInclude Include="CPanel.h">
       <Filter>Asset\UI</Filter>
     </ClInclude>
+    <ClInclude Include="CButton.h">
+      <Filter>Asset\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -186,6 +189,9 @@
       <Filter>Manager</Filter>
     </ClCompile>
     <ClCompile Include="CPanel.cpp">
+      <Filter>Asset\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CButton.cpp">
       <Filter>Asset\UI</Filter>
     </ClCompile>
   </ItemGroup>
